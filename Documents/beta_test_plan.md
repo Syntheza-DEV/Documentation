@@ -14,7 +14,6 @@ Cette section répond explicitement à : **“Quel site ? En ligne ou en local ?
 
 ### 0.1 Client Web
 
-
 **Option A — En ligne (recommandé pour le jury)**
 
 - URL (staging ou prod) : [https://syntheza.app](https://syntheza.app)
@@ -261,68 +260,69 @@ Ce back-office est un élément essentiel de la bêta car il rend le système **
 ## Annexe A — Matrice de traçabilité (tâches MVP → fonctionnalités bêta)
 
 > Objectif : prouver que les **63 tâches** sont couvertes, sans les présenter comme 63 “fonctionnalités” distinctes.
-> Format : `Tâche # — Titre → ID(s) fonctionnalité`
 
-1 — Activer connexion Login au Backend Prod (web) → F2
-2 — Modèle de données initial (PostgreSQL) → F8, F18
-3 — Auth backend (Inscription/Connexion + JWT) → F1, F2
-4 — CRUD Sources (RSS + Twitter placeholder) → F6
-5 — Ingestion RSS + normalisation items → F8
-6 — Endpoint aperçu données collectées → F8
-7 — Service Résumé IA simple → F12
-8 — Résumé quotidien batch → F13
-9 — Pipeline tri articles (Ranking V1) → F9
-10 — Matching utilisateur ↔ articles → F9
-11 — Résumé automatique articles → F12
-12 — Trust Factor V1 → F14
-13 — Exposition Trust Factor API → F14
-14 — Benchmark solutions LLM → F12, F18
-15 — Endpoint Feed unifié → F9
-16 — Like backend → F15
-17 — Commentaires backend → F15
-18 — Password Lost Reset API → F3
-19 — Recherche articles V1 → F11
-20 — Configuration sources backend → F7
-21 — Stabilisation backend → F18
-22 — Page Password Lost complète (backend) → F3
-23 — Composant Trust Factor (web) → F14
-24 — Configuration sources Settings (web) → F7
-25 — Pagination infinite scroll Feed/Discover (web) → F10
-26 — Bookmark posts (web) → F15
-27 — Recherche Search onglet manquant (web) → F11
-28 — Follow/Unfollow (web) → F16
-29 — Upload photo profil (web) → F16
-30 — Changement mot de passe Settings (web) → F3
-31 — Navigation mobile UI (web responsive) → F18
-32 — Responsive mobile global (web) → F18
-33 — API Password Reset (web) → F3
-34 — API Trust Factor (web) → F14
-35 — API Sources (web) → F6, F7
-36 — Protection routes auth (web) → F4
-37 — Gestion token refresh (web) → F4
-38 — Gestion erreurs globales UI (web) → F18
-39 — Logout complet (web) → F5
-40 — Auth mobile → F1, F2, F4
-41 — Password Lost mobile → F3
-42 — Feed mobile → F9
-43 — Infinite scroll mobile → F10
-44 — Discover mobile → F10
-45 — Search mobile → F11
-46 — Settings mobile → F7, F3, F16
-47 — Sources mobile → F6, F7
-48 — Like mobile → F15
-49 — Commentaires mobile → F15
-50 — Trust Factor mobile → F14
-51 — Bookmark mobile → F15
-52 — Follow mobile → F16
-53 — Subscribe mobile → F7
-54 — Upload avatar mobile → F16
-55 — Password change mobile → F3
-56 — Profile mobile → F16
-57 — Connexion prod mobile → F2
-58 — UX/UI mobile → F18
-59 — Stabilisation Beta mobile → F18
-60 — Ingestion Twitter stub → F8
-61 — Notifications in-app → F17
-62 — Observabilité logs → F18
-63 — Documentation technique MVP → F18
+| N° | Tâche | Fonctionnalité(s) |
+|----|-------|-------------------|
+| 1 | Activer connexion Login au Backend Prod (web) | F2 |
+| 2 | Modèle de données initial (PostgreSQL) | F8, F18 |
+| 3 | Auth backend (Inscription/Connexion + JWT) | F1, F2 |
+| 4 | CRUD Sources (RSS + Twitter placeholder) | F6 |
+| 5 | Ingestion RSS + normalisation items | F8 |
+| 6 | Endpoint aperçu données collectées | F8 |
+| 7 | Service Résumé IA simple | F12 |
+| 8 | Résumé quotidien batch | F13 |
+| 9 | Pipeline tri articles (Ranking V1) | F9 |
+| 10 | Matching utilisateur ↔ articles | F9 |
+| 11 | Résumé automatique articles | F12 |
+| 12 | Trust Factor V1 | F14 |
+| 13 | Exposition Trust Factor API | F14 |
+| 14 | Benchmark solutions LLM | F12, F18 |
+| 15 | Endpoint Feed unifié | F9 |
+| 16 | Like backend | F15 |
+| 17 | Commentaires backend | F15 |
+| 18 | Password Lost Reset API | F3 |
+| 19 | Recherche articles V1 | F11 |
+| 20 | Configuration sources backend | F7 |
+| 21 | Stabilisation backend | F18 |
+| 22 | Page Password Lost complète (backend) | F3 |
+| 23 | Composant Trust Factor (web) | F14 |
+| 24 | Configuration sources Settings (web) | F7 |
+| 25 | Pagination infinite scroll Feed/Discover (web) | F10 |
+| 26 | Bookmark posts (web) | F15 |
+| 27 | Recherche Search onglet manquant (web) | F11 |
+| 28 | Follow/Unfollow (web) | F16 |
+| 29 | Upload photo profil (web) | F16 |
+| 30 | Changement mot de passe Settings (web) | F3 |
+| 31 | Navigation mobile UI (web responsive) | F18 |
+| 32 | Responsive mobile global (web) | F18 |
+| 33 | API Password Reset (web) | F3 |
+| 34 | API Trust Factor (web) | F14 |
+| 35 | API Sources (web) | F6, F7 |
+| 36 | Protection routes auth (web) | F4 |
+| 37 | Gestion token refresh (web) | F4 |
+| 38 | Gestion erreurs globales UI (web) | F18 |
+| 39 | Logout complet (web) | F5 |
+| 40 | Auth mobile | F1, F2, F4 |
+| 41 | Password Lost mobile | F3 |
+| 42 | Feed mobile | F9 |
+| 43 | Infinite scroll mobile | F10 |
+| 44 | Discover mobile | F10 |
+| 45 | Search mobile | F11 |
+| 46 | Settings mobile | F7, F3, F16 |
+| 47 | Sources mobile | F6, F7 |
+| 48 | Like mobile | F15 |
+| 49 | Commentaires mobile | F15 |
+| 50 | Trust Factor mobile | F14 |
+| 51 | Bookmark mobile | F15 |
+| 52 | Follow mobile | F16 |
+| 53 | Subscribe mobile | F7 |
+| 54 | Upload avatar mobile | F16 |
+| 55 | Password change mobile | F3 |
+| 56 | Profile mobile | F16 |
+| 57 | Connexion prod mobile | F2 |
+| 58 | UX/UI mobile | F18 |
+| 59 | Stabilisation Beta mobile | F18 |
+| 60 | Ingestion Twitter stub | F8 |
+| 61 | Notifications in-app | F17 |
+| 62 | Observabilité logs | F18 |
+| 63 | Documentation technique MVP | F18 |
