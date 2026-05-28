@@ -179,12 +179,67 @@ L'interface opérateur (`ops_beta@mail.com`) est l'outil de démonstration pour 
 ## Annexe A — Matrice de traçabilité (63 tâches MVP -> Spécifications Bêta)
 
 | N° Tâche | Libellé Technique de la Tâche | Fonctionnalité Bêta | Impact Stratégique / Business |
-| :--- | :--- | :--- | :--- |
+| --- | --- | --- | --- |
+| **1** | Activer connexion Login au Backend Prod (web) | F2 | Premier point de contact utilisateur, fluidification du tunnel d'accès web. |
+| **2** | Modèle de données initial (PostgreSQL) | F8, F18 | Solidité architecturale, intégrité des données utilisateurs et des préférences de veille. |
 | **3** | Auth backend (Inscription/Connexion + JWT) | F1, F2, F4 | Sécurisation de l'accès et isolation des données utilisateurs. |
-| **8** | Résumé quotidien batch | F13 | Valeur d'usage quotidienne (le rendez-vous de l'info). |
+| **4** | CRUD Sources (RSS + Twitter placeholder) | F6 | Personnalisation de l'expérience, premier levier d'engagement de la cible. |
+| **5** | Ingestion RSS + normalisation items | F8 | Suppression du bruit publicitaire, valeur brute délivrée via un contenu propre. |
+| **6** | Endpoint aperçu données collectées | F8 | Outil QA interne pour valider la qualité de la donnée avant diffusion. |
+| **7** | Service Résumé IA simple | F12 | Promesse de base du produit : gain de temps immédiat par la synthèse automatique. |
+| **8** | Résumé quotidien batch | F13 | Valeur d'usage quotidienne (le rendez-vis de l'info). |
 | **9** | Pipeline tri articles (Ranking V1) | F9 | Élimination de l'addiction au scroll (tri par premier critère). |
+| **10** | Matching utilisateur ↔ articles | F9 | Hyper-pertinence du feed, réduction du taux de churn des utilisateurs exigeants. |
+| **11** | Résumé automatique articles | F12 | Automatisation de la valeur, réduction de la charge cognitive à l'ouverture. |
 | **12** | Trust Factor V1 | F14 | Différenciation concurrentielle majeure (Lutte Fake-News). |
+| **13** | Exposition Trust Factor API | F14 | Disponibilité multi-plateforme de la brique de confiance exclusive de Syntheza. |
+| **14** | Benchmark solutions LLM | F12, F18 | Maîtrise des coûts de serveurs (marge de 92%) et optimisation de la latence. |
+| **15** | Endpoint Feed unifié | F9 | Centralisation multi-sources permettant d'unifier l'expérience de veille. |
+| **16** | Like backend | F15 | Création d'un premier niveau d'engagement et récolte de signaux d'intérêt. |
+| **17** | Commentaires backend | F15 | Rétention sociale, animation de la communauté de veilleurs professionnels. |
+| **18** | Password Lost Reset API | F3 | Réduction de la friction de reconnexion, rétention des utilisateurs actifs. |
+| **19** | Recherche articles V1 | F11 | Outil de productivité pour retrouver instantanément une info archivée ou chaude. |
+| **20** | Configuration sources backend | F7 | Flexibilité du catalogue de veille, adaptation fine aux pivots sectoriels de l'utilisateur. |
+| **21** | Stabilisation backend | F18 | Fiabilité technique indispensable pour la crédibilité auprès d'un public B2B. |
+| **22** | Page Password Lost complète (backend) | F3 | Autonomie de l'utilisateur sur le Web, diminution des demandes de support. |
+| **23** | Composant Trust Factor (web) | F14 | Transparence algorithmique immédiate sur grand écran pour rassurer le professionnel. |
 | **24** | Configuration sources Settings (web) | F7, F19 | Point d'entrée de la personnalisation et de la gestion des quotas. |
+| **25** | Pagination infinite scroll Feed/Discover (web) | F10 | Confort de navigation web sans chargement de page forcé, contrôle du flux de données. |
+| **26** | Bookmark posts (web) | F15 | Création d'une bibliothèque de connaissances personnelle, valeur d'usage long terme. |
+| **27** | Recherche Search onglet manquant (web) | F11 | Complétude de l'expérience de bureau pour une recherche transversale fluide. |
+| **28** | Follow/Unfollow (web) | F16 | Mécanisme de viralité in-app permettant de suivre les experts de son secteur. |
+| **29** | Upload photo profil (web) | F16 | Personnalisation de l'identité visuelle de l'utilisateur sur la plateforme. |
+| **30** | Changement mot de passe Settings (web) | F3 | Sécurité du compte utilisateur de bout en bout depuis l'espace personnel web. |
+| **31** | Navigation mobile UI (web responsive) | F18 | Accessibilité cross-device pour l'utilisateur de bureau en déplacement temporaire. |
+| **32** | Responsive mobile global (web) | F18 | Uniformisation de l'image de marque et flexibilité d'affichage multi-écrans. |
+| **33** | API Password Reset (web) | F3 | Sécurisation technique du protocole de récupération de compte web. |
+| **34** | API Trust Factor (web) | F14 | Intégration de l'affichage du score de confiance sur le client web. |
+| **35** | API Sources (web) | F6, F7 | Synchronisation instantanée des ajouts de flux RSS depuis le tableau de bord web. |
+| **36** | Protection routes auth (web) | F4 | Protection de la propriété intellectuelle de l'application et sécurisation de l'espace abonné. |
 | **37** | Gestion token refresh (web) | F4 | Rétention utilisateur (expérience fluide sans reconnexions). |
-| **46** | Settings mobile (Abonnement) | F16, F19 | Affichage de l'état du plan (Free vs Pro) et upgrade. |
+| **38** | Gestion erreurs globales UI (web) | F18 | Maintien de l'image de marque (zéro écran blanc d'erreur) en cas d'anomalie réseau. |
+| **39** | Logout complet (web) | F5 | Respect strict de la confidentialité des sessions sur les ordinateurs partagés. |
+| **40** | Auth mobile | F1, F2, F4 | Point d'entrée clé de l'application mobile, sécurisation de la session sur smartphone. |
+| **41** | Password Lost mobile | F3 | Autonomie de récupération de compte directement depuis le smartphone de l'utilisateur. |
+| **42** | Feed mobile | F9 | Cœur de l'usage nomade, consultation ultra-rapide de l'actualité filtrée. |
+| **43** | Infinite scroll mobile | F10 | Ergonomie mobile fluide optimisée pour l'analyse rapide des titres à la volée. |
+| **44** | Discover mobile | F10 | Moteur de sérendipité, découverte de nouvelles sources pour enrichir sa veille. |
+| **45** | Search mobile | F11 | Accès immédiat à l'information ciblée, même en situation de mobilité. |
+| **46** | Settings mobile | F16, F19 | Affichage de l'état du plan (Free vs Pro) et upgrade. |
+| **47** | Sources mobile | F6, F7 | Possibilité de capturer et d'ajouter un flux RSS directement depuis son mobile. |
+| **48** | Like mobile | F15 | Interaction tactile rapide facilitant le feedback utilisateur instantané. |
+| **49** | Commentaires mobile | F15 | Participation active aux débats sectoriels en direct depuis son smartphone. |
+| **50** | Trust Factor mobile | F14 | Prise de décision instantanée dans les transports : savoir si l'info est fiable en un coup d'œil. |
+| **51** | Bookmark mobile | F15 | Sauvegarde instantanée d'un article pour une lecture approfondie plus tard au bureau. |
+| **52** | Follow mobile | F16 | Extension de son réseau professionnel in-app depuis son appareil mobile. |
+| **53** | Subscribe mobile | F7 | Activation instantanée du suivi de nouveaux flux d'information sur mobile. |
+| **54** | Upload avatar mobile | F16 | Utilisation de l'appareil photo/galerie mobile pour humaniser le profil. |
+| **55** | Password change mobile | F3 | Sécurisation et modification rapide des identifiants à la volée. |
+| **56** | Profile mobile | F16 | Vitrine personnelle de l'utilisateur synthétisant ses centres d'intérêt de veille. |
+| **57** | Connexion prod mobile | F2 | Connexion au serveur de production pour tester l'application en conditions réelles. |
+| **58** | UX/UI mobile | F18 | Confort visuel (Slow Content) limitant la fatigue cognitive de l'utilisateur nomade. |
+| **59** | Stabilisation Beta mobile | F18 | Réduction des crashs sur mobile (KPI clé pour la rétention en phase de bêta). |
+| **60** | Ingestion Twitter stub | F8 | Preuve de concept technique pour l'extension future vers la veille sur les réseaux sociaux. |
 | **61** | Notifications in-app | F17 | Réengagement de la cible Prosumer face aux urgences de veille. |
+| **62** | Observabilité logs | F18 | Supervision de l'infrastructure, détection proactive des anomalies avant impact client. |
+| **63** | Documentation technique MVP | F18 | Alignement de l'équipe technique et pérennité du code pour les futures itérations du produit. |
