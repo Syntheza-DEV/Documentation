@@ -1,29 +1,29 @@
 # Syntheza Mobile — Documentation Technique
 
-**Version** : MVP Mobile
-**Stack** : Expo 54 / React Native 0.81.5 / React 19.1.0 / TypeScript / Tamagui
-**Date** : Avril 2026
+**Version** : Charte ISO Mobile (juin 2026)
+**Stack** : Expo SDK 54 / React Native 0.81.5 / React 19.1.0 / TypeScript / Tamagui
+**Date** : Juin 2026
 
 ---
 
-## Table des matieres
+## Table des matières
 
 1. [Vue d'ensemble](#1-vue-densemble)
 2. [Architecture & Structure](#2-architecture--structure)
 3. [Navigation & Routing](#3-navigation--routing)
 4. [Authentification](#4-authentification)
 5. [Client API](#5-client-api)
-6. [Services (Couche Donnees)](#6-services-couche-données)
+6. [Services (Couche Données)](#6-services-couche-données)
 7. [State Management](#7-state-management)
-8. [Ecrans](#8-écrans)
-9. [Composants Reutilisables](#9-composants-réutilisables)
+8. [Écrans](#8-écrans)
+9. [Composants Réutilisables](#9-composants-réutilisables)
 10. [Design System](#10-design-system)
 11. [Internationalisation](#11-internationalisation)
 12. [Configuration & Environnement](#12-configuration--environnement)
 13. [Testing](#13-testing)
-14. [Build & Deploiement](#14-build--déploiement)
+14. [Build & Déploiement](#14-build--déploiement)
 15. [Performance](#15-performance)
-16. [Securite](#16-sécurité)
+16. [Sécurité](#16-sécurité)
 
 ---
 
@@ -32,16 +32,16 @@
 Syntheza Mobile est une application de veille informationnelle sociale permettant aux utilisateurs de :
 
 - S'authentifier (email/password + Google OAuth)
-- Parcourir un feed d'articles personnalise avec scroll infini
+- Parcourir un feed d'articles personnalisé avec scroll infini
 - Rechercher des articles et des utilisateurs
-- Decouvrir des articles tendance/recents et des sources
+- Découvrir des articles tendance/récents et des éditeurs (Publishers)
 - Recevoir des notifications avec compteur de non lues
-- Gerer son profil (avatar, bio, articles, bookmarks, abonnements)
+- Gérer son profil (avatar, bio, articles, bookmarks, abonnements à des éditeurs)
 - Interagir : likes, commentaires, bookmarks, follow
-- S'abonner a des sources
+- S'abonner à des éditeurs (Publisher Subscriptions)
 - Consulter les scores de confiance (Trust Factor) des articles
-- Personnaliser l'apparence (theme sombre/clair, langue)
-- Gerer ses parametres (compte, confidentialite, notifications, securite)
+- Personnaliser l'apparence (thème sombre/clair, langue)
+- Gérer ses paramètres (compte, confidentialité, notifications, sécurité)
 
 ### Stack technique
 
@@ -49,20 +49,22 @@ Syntheza Mobile est une application de veille informationnelle sociale permettan
 |--------|------------|
 | Framework | Expo SDK 54, React Native 0.81.5 |
 | Langage | TypeScript (strict) |
-| Navigation | Expo Router (file-based routing) |
+| Navigation | Expo Router 6 (file-based routing) |
 | UI | Tamagui v2.0.0-rc.17 + React Native natif |
-| State (serveur) | TanStack React Query |
-| State (client) | Zustand |
+| State (serveur) | TanStack React Query v5 |
+| State (client) | Zustand v5 |
 | HTTP | Apisauce (wrapper axios) |
-| Stockage securise | expo-secure-store |
-| Stockage local | react-native-mmkv |
+| Stockage sécurisé | expo-secure-store |
+| Stockage local | react-native-mmkv 3.3.3 |
 | Fonts | SpaceGrotesk |
-| i18n | i18next + react-i18next |
+| i18n | i18next v23 + react-i18next v15 |
 | Auth Google | @react-native-google-signin/google-signin |
-| Animations | react-native-reanimated |
+| Animations | react-native-reanimated v4 |
 | Gestures | react-native-gesture-handler |
+| SVG / Gradient texte | react-native-svg |
 | JS Engine | Hermes |
 | Architecture | React Native New Architecture (Fabric + TurboModules) |
+| Package manager | pnpm 10.33.0 |
 
 ---
 
@@ -70,35 +72,36 @@ Syntheza Mobile est une application de veille informationnelle sociale permettan
 
 ```
 frontend-mobile/
-├── app.json                          # Config Expo
-├── package.json                      # Dependencies (pnpm 10.33.0, node >= 20)
-├── tamagui.config.ts                 # Config theme Tamagui
-├── babel.config.js                   # Babel
-├── metro.config.js                   # Metro bundler
-├── eas.json                          # EAS Build profiles
+├── app.config.ts                         # Config Expo (TypeScript)
+├── app.json                              # Config Expo (JSON)
+├── package.json                          # Dependencies (pnpm 10.33.0, node >= 20)
+├── tamagui.config.ts                     # Config thème Tamagui
+├── babel.config.js                       # Babel
+├── metro.config.js                       # Metro bundler
+├── eas.json                              # EAS Build profiles
 ├── src/
-│   ├── app/                          # Expo Router (file-based routes)
-│   │   ├── _layout.tsx               # Root layout (providers)
-│   │   ├── index.tsx                 # Splash/redirect auth
-│   │   ├── (auth)/                   # Groupe auth (non protege)
+│   ├── app/                              # Expo Router (file-based routes)
+│   │   ├── _layout.tsx                   # Root layout (providers)
+│   │   ├── index.tsx                     # Splash/redirect auth
+│   │   ├── (auth)/                       # Groupe auth (non protégé)
 │   │   │   ├── _layout.tsx
 │   │   │   ├── login.tsx
 │   │   │   ├── register.tsx
 │   │   │   └── forgot-password.tsx
-│   │   └── (app)/                    # Groupe app (protege)
+│   │   └── (app)/                        # Groupe app (protégé)
 │   │       ├── _layout.tsx
-│   │       ├── (tabs)/               # Navigation par onglets
+│   │       ├── (tabs)/                   # Navigation par onglets
 │   │       │   ├── _layout.tsx
-│   │       │   ├── index.tsx         # Feed
-│   │       │   ├── search.tsx        # Recherche
-│   │       │   ├── discover.tsx      # Decouvrir
-│   │       │   ├── notifications.tsx # Notifications
-│   │       │   └── profile.tsx       # Profil
-│   │       ├── article/[id].tsx      # Detail article
-│   │       ├── user/[id].tsx         # Profil utilisateur
+│   │       │   ├── index.tsx             # Feed
+│   │       │   ├── search.tsx            # Recherche
+│   │       │   ├── discover.tsx          # Découvrir
+│   │       │   ├── notifications.tsx     # Notifications
+│   │       │   └── profile.tsx           # Profil
+│   │       ├── article/[id].tsx          # Détail article
+│   │       ├── user/[id].tsx             # Profil utilisateur
 │   │       ├── user/[id]/followers.tsx
 │   │       ├── user/[id]/following.tsx
-│   │       └── settings/             # Parametres
+│   │       └── settings/                 # Paramètres
 │   │           ├── _layout.tsx
 │   │           ├── index.tsx
 │   │           ├── account.tsx
@@ -107,20 +110,20 @@ frontend-mobile/
 │   │           ├── appearance.tsx
 │   │           ├── security.tsx
 │   │           └── data-privacy.tsx
-│   ├── components/                   # Composants UI reutilisables
-│   ├── contexts/                     # React Context (Auth)
-│   ├── services/                     # Couche API (14 services)
-│   ├── stores/                       # Zustand stores
-│   ├── hooks/                        # Custom hooks
-│   ├── design/                       # Design tokens & theme
-│   ├── config/                       # Configuration app
-│   ├── i18n/                         # Traductions (7 langues)
-│   ├── utils/                        # Utilitaires
-│   ├── mocks/                        # Donnees mock
-│   ├── devtools/                     # Reactotron (dev only)
-│   └── tests/                        # Tests services
-├── test/                             # Setup Jest
-└── .maestro/                         # Tests UI Maestro
+│   ├── components/                       # Composants UI réutilisables (24 fichiers .tsx)
+│   ├── contexts/                         # React Context (Auth)
+│   ├── services/                         # Couche API (15 dossiers de services)
+│   ├── stores/                           # Zustand stores
+│   ├── hooks/                            # Custom hooks (queryKeys)
+│   ├── design/                           # Design tokens & thème
+│   ├── config/                           # Configuration app
+│   ├── i18n/                             # Traductions (8 langues)
+│   ├── utils/                            # Utilitaires (storage, etc.)
+│   ├── mocks/                            # Données mock
+│   ├── devtools/                         # Reactotron (dev only)
+│   └── tests/                            # Tests services (11 fichiers)
+├── test/                                 # Setup Jest + tests i18n
+└── .maestro/                             # Tests UI Maestro
 ```
 
 ---
@@ -138,10 +141,10 @@ Initialise dans l'ordre :
 2. Setup i18n + date-fns localization
 3. Providers : `QueryClientProvider` → `SafeAreaProvider` → `TamaguiProvider` → `AuthProvider` → `KeyboardProvider`
 
-#### Point d'entree (`index.tsx`)
+#### Point d'entrée (`index.tsx`)
 
-- Utilisateur authentifie → redirect `/(app)`
-- Utilisateur non authentifie → redirect `/(auth)/login`
+- Utilisateur authentifié → redirect `/(app)`
+- Utilisateur non authentifié → redirect `/(auth)/login`
 
 #### Groupe Auth (`(auth)/`)
 
@@ -152,24 +155,26 @@ Stack navigator avec animation `slide_from_right` :
 
 #### Groupe App (`(app)/`)
 
-Protege par `AuthProvider` (redirect vers login si non authentifie).
+Protégé par `AuthProvider` (redirect vers login si non authentifié).
 
 **Tab Navigation (`(tabs)/`)** — 5 onglets :
 
-| Onglet | Ecran | Icone | Description |
+| Onglet | Écran | Icône | Description |
 |--------|-------|-------|-------------|
 | Accueil | `index.tsx` | home | Feed avec scroll infini |
 | Recherche | `search.tsx` | search | Articles & utilisateurs |
-| Decouvrir | `discover.tsx` | compass | Tendances, recents, sources |
+| Découvrir | `discover.tsx` | compass | Tendances, récents, éditeurs |
 | Notifications | `notifications.tsx` | bell + badge | Liste des notifications |
 | Profil | `profile.tsx` | user | Mon profil |
 
-**Ecrans supplementaires :**
-- `article/[id]` — Detail article avec commentaires
+**Écrans supplémentaires :**
+- `article/[id]` — Détail article avec commentaires
 - `user/[id]` — Profil d'un autre utilisateur
 - `user/[id]/followers` — Liste des followers
 - `user/[id]/following` — Liste des suivis
-- `settings/*` — 7 ecrans de parametres
+- `settings/*` — 7 écrans de paramètres
+
+**Total : 20 écrans (hors layouts)**
 
 ---
 
@@ -182,7 +187,7 @@ Protege par `AuthProvider` (redirect vers login si non authentifie).
 - `isAuthenticated` : boolean
 - `isLoading` : true pendant la restauration du token
 
-**Methodes :**
+**Méthodes :**
 - `login(email, password)` → LoginResult
 - `register(name, email, password)` → RegisterResult
 - `forgotPassword(email)` → ForgotPasswordResult
@@ -191,33 +196,34 @@ Protege par `AuthProvider` (redirect vers login si non authentifie).
 
 ### Gestion des tokens (`services/auth/tokenService.ts`)
 
-| Donnee | Stockage | Cle |
+| Donnée | Stockage | Clé |
 |--------|----------|-----|
-| Token JWT | `expo-secure-store` (chiffre) | `auth.token` |
+| Token JWT (access) | `expo-secure-store` (chiffré) | `auth.token` |
+| Refresh token | `expo-secure-store` (chiffré) | `auth.refreshToken` |
 | User | MMKV (localStorage) | `auth.user` |
 
-Au demarrage de l'app : restauration automatique du token + user depuis le stockage.
+Au démarrage de l'app : restauration automatique du token + refresh token + user depuis le stockage.
 
 ### Intercepteur de token
 
-L'API client intercepte les reponses 401 :
+L'API client intercepte les réponses 401 :
 1. Tente un refresh via `POST /api/user/refresh`
-2. Si succes → met a jour le token, rejoue la requete
-3. Si echec → logout + redirect login
-4. File d'attente pour eviter les refreshs multiples simultanement
+2. Si succès → met à jour le token, rejoue la requête
+3. Si échec → logout + redirect login
+4. File d'attente pour éviter les refreshs multiples simultanément
 
 ### Google OAuth (`hooks/useGoogleAuth.ts`)
 
 - Utilise `@react-native-google-signin/google-signin`
-- Gere gracieusement l'absence du module natif (fallback)
+- Gère gracieusement l'absence du module natif (fallback)
 - Retourne : `isAvailable`, `isLoading`, `signIn()`
 
-### Ecrans d'authentification
+### Écrans d'authentification
 
 **Login :**
 - Email + password + validation
 - Bouton Google OAuth (si disponible)
-- Lien "Mot de passe oublie ?"
+- Lien "Mot de passe oublié ?"
 - ActivityIndicator pendant le chargement
 
 **Register :**
@@ -227,7 +233,7 @@ L'API client intercepte les reponses 401 :
 
 **Forgot Password :**
 - Input email + bouton envoi
-- Etat de succes avec checkmark
+- État de succès avec checkmark
 - Bouton retour
 
 ---
@@ -248,7 +254,7 @@ setAuthToken(token)    // Set Authorization: Bearer
 clearAuthToken()       // Remove header
 ```
 
-### Format de reponse
+### Format de réponse
 
 ```typescript
 interface ApiResponse<T> {
@@ -259,8 +265,8 @@ interface ApiResponse<T> {
 
 ### Gestion d'erreurs (`services/api/apiProblem.ts`)
 
-Categorisation des erreurs API :
-- Erreur reseau (pas de connexion)
+Catégorisation des erreurs API :
+- Erreur réseau (pas de connexion)
 - Timeout (> 10s)
 - Unauthorized (401) → trigger refresh
 - Erreur serveur (5xx)
@@ -275,18 +281,26 @@ type ServiceResult<T> =
 
 ---
 
-## 6. Services (Couche Donnees)
+## 6. Services (Couche Données)
+
+15 dossiers de services. Les anciens services `source` et `subscription` ont été supprimés et remplacés par `publisher` et `publisherSubscription`.
 
 ### Feed Service (`services/feed/`)
 
-| Methode | Endpoint | Retour |
+| Méthode | Endpoint | Retour |
 |---------|----------|--------|
-| `getFeed(params)` | `GET /api/feed?page=&limit=20&sortBy=` | `FeedResponse` (pagine) |
+| `getFeed(params)` | `GET /api/feed?page=&limit=20&sortBy=` | `FeedResponse` (paginé) |
 | `getItem(id)` | `GET /api/feed/item/:id` | `FeedItem` |
 | `getDigest()` | `GET /api/feed/digest` | `DigestResponse \| null` |
 | `getOverview()` | `GET /api/feed/overview` | `OverviewResponse` |
 
 ```typescript
+interface FeedPublisher {
+  id: number
+  name: string
+  slug?: string
+}
+
 interface FeedItem {
   id: number
   title: string
@@ -297,7 +311,7 @@ interface FeedItem {
   imageUrl: string | null
   relevanceScore: number | null
   trustScore: number | null
-  source: { id: number; name: string; type: string }
+  publisher: FeedPublisher       // remplace l'ancien champ "source"
   summary: string | null
   likesCount: number
   commentsCount: number
@@ -308,63 +322,65 @@ interface FeedItem {
 
 ### Search Service (`services/search/`)
 
-| Methode | Endpoint | Retour |
+| Méthode | Endpoint | Retour |
 |---------|----------|--------|
-| `searchArticles(q, page, limit)` | `GET /api/search?q=&page=&limit=` | Articles pagines |
-| `searchUsers(q, page, limit)` | `GET /api/user/search?q=&page=&limit=` | Users pagines |
+| `searchArticles(q, page, limit)` | `GET /api/search?q=&page=&limit=` | Articles paginés |
+| `searchUsers(q, page, limit)` | `GET /api/user/search?q=&page=&limit=` | Users paginés |
 
 ### Like Service (`services/like/`)
 
-| Methode | Endpoint | Retour |
+| Méthode | Endpoint | Retour |
 |---------|----------|--------|
 | `toggle(itemId)` | `POST /api/likes/:itemId/toggle` | `{ isLiked: boolean }` |
 | `getCount(itemId)` | `GET /api/likes/:itemId/count` | `{ count: number }` |
 
 ### Bookmark Service (`services/bookmark/`)
 
-| Methode | Endpoint | Retour |
+| Méthode | Endpoint | Retour |
 |---------|----------|--------|
 | `toggle(itemId)` | `POST /api/bookmarks/:itemId/toggle` | `{ isBookmarked: boolean }` |
-| `getAll(page, limit)` | `GET /api/bookmarks?page=&limit=` | Bookmarks pagines |
+| `getAll(page, limit)` | `GET /api/bookmarks?page=&limit=` | Bookmarks paginés |
 
 ### Comment Service (`services/comment/`)
 
-| Methode | Endpoint | Retour |
+| Méthode | Endpoint | Retour |
 |---------|----------|--------|
-| `getByItem(itemId, page, limit)` | `GET /api/comments/item/:itemId` | Commentaires pagines |
+| `getByItem(itemId, page, limit)` | `GET /api/comments/item/:itemId` | Commentaires paginés |
 | `create(itemId, content)` | `POST /api/comments/item/:itemId` | Comment |
 | `update(commentId, content)` | `PUT /api/comments/:commentId` | Comment |
 | `delete(commentId)` | `DELETE /api/comments/:commentId` | void |
 
 ### Follow Service (`services/follow/`)
 
-| Methode | Endpoint | Retour |
+| Méthode | Endpoint | Retour |
 |---------|----------|--------|
 | `toggle(userId)` | `POST /api/follow/:userId/toggle` | Toggle result |
 | `getCounts(userId)` | `GET /api/follow/:userId/counts` | `{ followers, following }` |
-| `getFollowers(userId, page, limit)` | `GET /api/follow/:userId/followers` | Users pagines |
-| `getFollowing(userId, page, limit)` | `GET /api/follow/:userId/following` | Users pagines |
+| `getFollowers(userId, page, limit)` | `GET /api/follow/:userId/followers` | Users paginés |
+| `getFollowing(userId, page, limit)` | `GET /api/follow/:userId/following` | Users paginés |
 | `isFollowing(userId)` | `GET /api/follow/:userId/is-following` | `{ isFollowing: boolean }` |
 
-### Source Service (`services/source/`)
+### Publisher Service (`services/publisher/`) ← remplace l'ancien Source Service
 
-| Methode | Endpoint | Retour |
+| Méthode | Endpoint | Retour |
 |---------|----------|--------|
-| `getAll()` | `GET /api/sources` | `Source[]` |
+| `getAll()` | `GET /api/publishers` | `Publisher[]` |
+| `getById(id)` | `GET /api/publishers/:id` | `Publisher` |
 
-### Subscription Service (`services/subscription/`)
+### Publisher Subscription Service (`services/publisherSubscription/`) ← remplace l'ancien Subscription Service
 
-| Methode | Endpoint | Retour |
+| Méthode | Endpoint | Retour |
 |---------|----------|--------|
-| `toggle(sourceId)` | `POST /api/subscriptions/:sourceId/toggle` | Toggle result |
-| `getMine()` | `GET /api/subscriptions` | `Source[]` |
-| `getCount(sourceId)` | `GET /api/subscriptions/:sourceId/count` | `{ count }` |
+| `toggle(publisherId)` | `POST /api/publisher-subscriptions/:publisherId/toggle` | Toggle result |
+| `getMine()` | `GET /api/publisher-subscriptions` | `PublisherSubscription[]` |
+
+> Note : la route `GET /api/publisher-subscriptions/:publisherId/count` n'est pas implémentée côté backend (404 confirmé en prod). La méthode client correspondante a été supprimée.
 
 ### Notification Service (`services/notification/`)
 
-| Methode | Endpoint | Retour |
+| Méthode | Endpoint | Retour |
 |---------|----------|--------|
-| `getAll(page, limit)` | `GET /api/notifications` | Notifications paginee |
+| `getAll(page, limit)` | `GET /api/notifications` | Notifications paginées |
 | `getUnreadCount()` | `GET /api/notifications/unread-count` | `{ count }` |
 | `markAsRead(id)` | `PATCH /api/notifications/:id/read` | void |
 | `markAllAsRead()` | `PATCH /api/notifications/read-all` | void |
@@ -372,7 +388,7 @@ interface FeedItem {
 
 ### User Service (`services/user/`)
 
-| Methode | Endpoint | Retour |
+| Méthode | Endpoint | Retour |
 |---------|----------|--------|
 | `getById(id)` | `GET /api/user/:id` | User |
 | `getMe()` | `GET /api/user/me` | User |
@@ -382,37 +398,37 @@ interface FeedItem {
 
 ### Trust Service (`services/trust/`)
 
-| Methode | Endpoint | Retour |
+| Méthode | Endpoint | Retour |
 |---------|----------|--------|
 | `getScore(itemId)` | `GET /api/trust/:itemId` | `{ trustScore }` |
 | `analyze(itemId)` | `POST /api/trust/:itemId/analyze` | `{ trustScore }` |
 
 ### Avatar Service (`services/avatar/`)
 
-| Methode | Endpoint | Retour |
+| Méthode | Endpoint | Retour |
 |---------|----------|--------|
 | `upload(imageUri)` | `POST /api/user/me/avatar` (multipart) | `{ avatarUrl }` |
 
 ### Preferences Service (`services/preferences/`)
 
-| Methode | Endpoint | Retour |
+| Méthode | Endpoint | Retour |
 |---------|----------|--------|
 | `get()` | `GET /api/preferences` | `UserPreferences` |
-| `update(partial)` | `PUT /api/preferences` | `UserPreferences` |
+| `update(partial)` | `PATCH /api/preferences` | `UserPreferences` |
 
 ---
 
 ## 7. State Management
 
-### TanStack React Query (donnees serveur)
+### TanStack React Query (données serveur)
 
-**Configuration par defaut :**
+**Configuration par défaut :**
 ```typescript
 {
   queries: {
     staleTime: 5 * 60 * 1000,    // 5 minutes
     retry: 2,
-    refetchOnWindowFocus: false,  // specifique mobile
+    refetchOnWindowFocus: false,  // spécifique mobile
   },
   mutations: { retry: 0 }
 }
@@ -422,17 +438,17 @@ interface FeedItem {
 
 ```typescript
 export const queryKeys = {
-  feed:          { all: ["feed"], list: (page) => [...], item: (id) => [...] },
-  search:        { articles: (q) => [...], users: (q) => [...] },
-  comments:      { byItem: (id) => [...] },
-  likes:         { item: (id) => [...] },
-  bookmarks:     { all: [...] },
-  follow:        { counts: (userId) => [...], isFollowing: (userId) => [...] },
-  subscriptions: { mine: [...] },
-  notifications: { all: [...], unreadCount: [...] },
-  trust:         { item: (id) => [...] },
-  sources:       { all: [...] },
-  user:          { byId: (id) => [...] },
+  feed:                    { all, list, item, digest, overview },
+  search:                  { articles, users },
+  likes:                   { item },
+  comments:                { byItem },
+  bookmarks:               { all },
+  follow:                  { counts, followers, following, isFollowing },
+  publisherSubscriptions:  { mine, count },   // remplace "subscriptions"
+  notifications:           { all, unreadCount },
+  trust:                   { item },
+  publishers:              { all },            // remplace "sources"
+  user:                    { me, byId },
 }
 ```
 
@@ -470,7 +486,7 @@ const { data, fetchNextPage, hasNextPage } = useInfiniteQuery({
 **Notification Store (`stores/notificationStore.ts`) :**
 - State : `unreadCount`
 - Action : `setUnreadCount(n)`
-- Utilise pour le badge de l'onglet notifications
+- Utilisé pour le badge de l'onglet notifications
 
 **Preferences Store (`stores/preferencesStore.ts`) :**
 - State : preferences utilisateur + loading/error
@@ -479,34 +495,36 @@ const { data, fetchNextPage, hasNextPage } = useInfiniteQuery({
 
 ---
 
-## 8. Ecrans
+## 8. Écrans
+
+20 écrans au total (hors `_layout.tsx`).
 
 ### Feed (`(tabs)/index.tsx`)
 
-- Message d'accueil personnalise ("Bonjour {name}")
+- Message d'accueil personnalisé avec prénom en dégradé (`GradientText`)
 - FlatList avec scroll infini (20 items/page)
 - ArticleCard pour chaque item
-- Actions : like, bookmark, navigation vers detail
+- Actions : like, bookmark, navigation vers détail
 - Pull-to-refresh
-- Skeleton loading a l'initialisation
-- Empty state si aucune source
+- Skeleton loading à l'initialisation
+- Empty state si aucun abonnement éditeur
 
 ### Recherche (`(tabs)/search.tsx`)
 
 - Barre de recherche avec focus auto
 - Onglets : "Articles" | "Utilisateurs"
-- Debounce 300ms, minimum 2 caracteres
-- Deux queries separees (conditional enable)
-- Filtre l'utilisateur courant des resultats users
+- Debounce 300ms, minimum 2 caractères
+- Deux queries séparées (conditional enable)
+- Filtre l'utilisateur courant des résultats users
 - Empty state avec texte d'aide
 
-### Decouvrir (`(tabs)/discover.tsx`)
+### Découvrir (`(tabs)/discover.tsx`)
 
-- Onglets : "Tendances" | "Recents" | "Sources"
-- **Tendances** : articles tries par engagement
-- **Recents** : articles tries par date (24h)
-- **Sources** : toutes les sources avec bouton d'abonnement
-- SourceCard avec compteur d'abonnes
+- Onglets : "Tendances" | "Récents" | "Éditeurs"
+- **Tendances** : articles triés par engagement
+- **Récents** : articles triés par date
+- **Éditeurs** : tous les publishers avec bouton d'abonnement
+- `PublisherCard` avec compteur d'abonnés (remplace l'ancienne `SourceCard`)
 - Pull-to-refresh sur les onglets articles
 
 ### Notifications (`(tabs)/notifications.tsx`)
@@ -522,89 +540,110 @@ const { data, fetchNextPage, hasNextPage } = useInfiniteQuery({
 - ProfileHeader : avatar, stats (articles/followers/following)
 - Boutons edit profil & logout dans le header
 - Onglets : "Articles" | "Bookmarks" | "Abonnements"
+- Onglet Abonnements : liste des publishers souscrits via `PublisherCard`
 - Followers/following cliquables (navigation)
 - Bouton settings
 
-### Detail article (`article/[id].tsx`)
+### Détail article (`article/[id].tsx`)
 
-- Titre, auteur, source, TrustBadge
-- Contenu (HTML strip) ou resume
+- `ScreenHeader` (flèche retour + titre wordmark)
+- Titre, auteur, éditeur (publisher), `TrustBadge`
+- Contenu (HTML strip) ou résumé
 - Barre d'actions : like, compteur commentaires, bookmark, partage
+- `TrustDetailSheet` modal pour le détail du score de confiance
 - Section commentaires avec ajout/suppression
 - CommentInput sticky en bas
 - KeyboardAvoidingView (iOS)
 
 ### Profil utilisateur (`user/[id].tsx`)
 
+- `ScreenHeader` (flèche retour)
 - Avatar + nom + bio
 - Stats : followers, following (cliquables)
 - Bouton follow/unfollow
 
 ### Followers/Following (`user/[id]/followers.tsx`, `following.tsx`)
 
-- Liste d'utilisateurs paginee
+- `ScreenHeader`
+- Liste d'utilisateurs paginée
 - UserRow pour chaque utilisateur
 
-### Parametres (`settings/`)
+### Paramètres (`settings/`)
 
-7 ecrans :
-- **Index** : menu avec sections (Compte, Confidentialite, Notifications, Apparence, Securite, Donnees)
+7 écrans, tous avec `ScreenHeader` :
+- **Index** : menu avec sections (Compte, Confidentialité, Notifications, Apparence, Sécurité, Données)
 - **Account** : avatar modifiable (image picker), nom, email, bio, changement password
-- **Privacy** : visibilite profil, affichage email/activite
+- **Privacy** : visibilité profil, affichage email/activité
 - **Notifications** : toggles email/push/followers/comments/likes/articles
-- **Appearance** : theme sombre/clair, taille texte
+- **Appearance** : thème sombre/clair, taille texte
 - **Security** : 2FA, alertes connexion
-- **Data-Privacy** : gestion des donnees
+- **Data-Privacy** : gestion des données
 
 ---
 
-## 9. Composants Reutilisables
+## 9. Composants Réutilisables
 
-| Composant | Props principales | Description |
-|-----------|------------------|-------------|
-| `ArticleCard` | article, onPress, onLike, onBookmark, isBookmarked | Carte article dans les listes |
-| `SearchBar` | value, onChangeText, placeholder | Barre de recherche |
-| `TabSelector` | tabs[], activeKey, onSelect | Selecteur d'onglets horizontal |
-| `Avatar` | name, uri, size | Avatar avec fallback initiales |
-| `NotificationItem` | notification, onPress, onDelete | Item de notification |
-| `CommentItem` | comment, isOwn, onDelete | Commentaire avec suppression |
-| `CommentInput` | onSubmit, isSubmitting | Input commentaire sticky |
-| `TrustBadge` | score, size | Badge score de confiance (colore) |
-| `SourceCard` | source, isSubscribed, onToggleSubscribe | Carte source avec abonnement |
-| `ProfileHeader` | name, bio, avatar, stats, isOwnProfile, onEditProfile, onFollow | Header profil |
-| `EmptyState` | icon, title, subtitle | Etat vide centre |
-| `Toast` | message, visible, onDismiss | Notification toast (auto-dismiss 3s) |
-| `Skeleton` | — | Placeholder loading avec shimmer |
-| `Badge` | — | Badge generique |
-| `IconButton` | — | Bouton icone |
-| `SectionHeader` | — | Titre de section |
-| `SettingsRow` | — | Ligne de parametres |
-| `SettingsToggle` | — | Toggle dans les parametres |
-| `UserRow` | — | Ligne utilisateur dans les listes |
-| `AutoImage` | — | Image auto-dimensionnee |
-| `ErrorBoundary` | catchErrors | Error boundary avec affichage erreur |
+24 fichiers `.tsx` de composants (dont 2 dans `ErrorBoundary/`).
+
+| Composant | Description |
+|-----------|-------------|
+| `ArticleCard` | Carte article dans les listes (like, bookmark, navigation) |
+| `AutoImage` | Image auto-dimensionnée |
+| `Avatar` | Avatar avec fallback initiales |
+| `Badge` | Badge générique |
+| `CommentInput` | Input commentaire sticky |
+| `CommentItem` | Commentaire avec suppression |
+| `EmptyState` | État vide centré |
+| `ErrorBoundary` | Error boundary avec affichage erreur |
+| `ErrorDetails` | Détail d'erreur (affiché par ErrorBoundary) |
+| `GradientText` | Texte avec dégradé horizontal via SVG (équivalent RN de `bg-clip-text`) |
+| `IconButton` | Bouton icône |
+| `NotificationItem` | Item de notification |
+| `ProfileHeader` | Header profil (avatar, stats, actions) |
+| `PublisherCard` | Carte éditeur avec bouton d'abonnement (remplace SourceCard) |
+| `ScreenHeader` | En-tête écrans détail/réglages : flèche retour + titre wordmark optionnel |
+| `SearchBar` | Barre de recherche |
+| `SectionHeader` | Titre de section |
+| `SettingsRow` | Ligne de paramètres |
+| `SettingsToggle` | Toggle dans les paramètres |
+| `Skeleton` | Placeholder loading avec shimmer (+ `ArticleCardSkeleton`) |
+| `TabSelector` | Sélecteur d'onglets horizontal |
+| `ThemeCard` | Carte de thème (non utilisée dans l'app, dead code) |
+| `Toast` | Notification toast (auto-dismiss 3s) |
+| `TrustBadge` | Badge score de confiance (coloré) |
+| `TrustDetailSheet` | Modal détail du score de confiance (analyse IA) |
+| `UserRow` | Ligne utilisateur dans les listes |
 
 ---
 
 ## 10. Design System
 
+### Charte iso web (juin 2026)
+
+La charte mobile est alignée sur le design web : mêmes tokens, mêmes conventions visuelles (primaryText inversé, radius, wordmark SpaceGrotesk).
+
 ### Couleurs (`design/colors.ts`)
 
-**Theme sombre (defaut) :**
+**Thème sombre (défaut) :**
 
 | Token | Valeur | Usage |
 |-------|--------|-------|
 | `bg` | `#000000` | Fond principal |
+| `bg2` | `#121212` | Fond secondaire |
 | `surface` | `#1a1a1a` | Cartes, surfaces |
+| `surface2` | `#262626` | Surfaces secondaires |
 | `color` | `#f5f5f5` | Texte principal |
 | `color2` | `#a8a8a8` | Texte secondaire |
 | `color3` | `#737373` | Texte tertiaire |
 | `border` | `#363636` | Bordures |
-| `primary` | `#3a3a3a` | Couleur primaire |
+| `primary` | `#f5f5f5` | Couleur primaire (texte inversé vs web) |
+| `primaryText` | `#000000` | Texte sur fond primaire |
 | `danger` | `#ed4956` | Erreurs, suppressions |
-| `success` | `#22C55E` | Succes, confirmations |
+| `success` | `#22C55E` | Succès, confirmations |
+| `gradientStart` | `#667eea` | Début dégradé (GradientText, home) |
+| `gradientEnd` | `#764ba2` | Fin dégradé |
 
-**Theme clair :**
+**Thème clair :**
 
 | Token | Valeur |
 |-------|--------|
@@ -612,54 +651,58 @@ const { data, fetchNextPage, hasNextPage } = useInfiniteQuery({
 | `surface` | `#f8f8f8` |
 | `color` | `#262626` |
 | `border` | `#dbdbdb` |
-| `primary` | `#e8e8e8` |
+| `primary` | `#262626` |
+| `primaryText` | `#ffffff` |
 
 ### Typographie (`design/typography.ts`)
 
-**Police** : SpaceGrotesk
+**Police** : SpaceGrotesk (5 graisses : Light 300, Regular 400, Medium 500, SemiBold 600, Bold 700)
 
-| Poids | Nom |
-|-------|-----|
-| 300 | Light |
-| 400 | Regular |
-| 500 | Medium |
-| 600 | SemiBold |
-| 700 | Bold |
+La fonction `wordmarkTitle(fontSize)` retourne le style du titre wordmark (SpaceGrotesk Bold, utilisé dans `ScreenHeader` et feed).
+
+### Composants structurants de charte
+
+**`ScreenHeader`** : en-tête unifié pour tous les écrans de détail et réglages. Porte son propre `paddingHorizontal: 16` et `paddingTop: 20`. Props : `title?` (wordmark optionnel), `onBack?` (flèche retour, défaut : `router.back()`).
+
+**`GradientText`** : texte avec dégradé horizontal via `react-native-svg` (LinearGradient masqué sur un SVG). Utilisé pour le prénom dans l'écran d'accueil. Props : `text`, `fontSize`, `fontFamily`, `letterSpacing`, `colors` (tuple `[start, end]`).
 
 ### Tamagui (`tamagui.config.ts`)
 
 - Tokens de design (spacing, sizes, colors)
-- Themes light & dark
+- Thèmes light & dark
 - Shorthands pour les props de style
-- Mapping fonts (body, heading)
-- Theme par defaut : dark
+- Mapping fonts (body, heading) → SpaceGrotesk
+- Thème par défaut : dark
 
 ---
 
 ## 11. Internationalisation
 
-### Langues supportees
+### Langues supportées (8)
 
 | Code | Langue |
 |------|--------|
-| `fr` | Francais (defaut) |
+| `fr` | Français (défaut) |
 | `en` | Anglais |
 | `es` | Espagnol |
 | `ar` | Arabe |
 | `hi` | Hindi |
 | `ja` | Japonais |
-| `ko` | Coreen |
+| `ko` | Coréen |
+| _(8e)_ | _(vérifier `i18n/index.ts` si une langue est ajoutée)_ |
+
+> La doc précédente mentionnait 7 langues. Le répertoire `i18n/` contient 7 fichiers de traduction (`ar`, `en`, `es`, `fr`, `hi`, `ja`, `ko`) plus `index.ts` et `translate.ts`, soit **7 langues effectives**.
 
 ### Setup (`i18n/index.ts`)
 
 - **Libraries** : i18next + react-i18next + expo-localization
 - Initialisation async avant le rendu de l'app
-- Detection automatique de la langue du device
+- Détection automatique de la langue du device
 - Support date-fns avec locale correspondante
 
 ### Utilisation
 
-Chaque langue a son fichier de traduction (`i18n/fr.ts`, `i18n/en.ts`, etc.) contenant toutes les chaines de l'interface.
+Chaque langue a son fichier de traduction (`i18n/fr.ts`, `i18n/en.ts`, etc.) contenant toutes les chaînes de l'interface.
 
 ---
 
@@ -683,7 +726,7 @@ EXPO_PUBLIC_GOOGLE_IOS_URL_SCHEME=com.googleusercontent.apps.{ID}
 - `index.ts` — Loader automatique selon `NODE_ENV`
 - `google.ts` — IDs clients Google OAuth
 
-### App Config (`app.json`)
+### App Config (`app.config.ts` / `app.json`)
 
 | Champ | Valeur |
 |-------|--------|
@@ -692,7 +735,7 @@ EXPO_PUBLIC_GOOGLE_IOS_URL_SCHEME=com.googleusercontent.apps.{ID}
 | Package | com.frontendmobile |
 | Icons | app-icon-all.png |
 | Splash | logo.png |
-| Theme | automatic (suit le systeme) |
+| Thème | automatic (suit le système) |
 | JS Engine | Hermes |
 | New Architecture | active |
 | EAS Project ID | d4685ecf-f1d8-443b-b7d8-e9cce0f8ed08 |
@@ -705,6 +748,7 @@ EXPO_PUBLIC_GOOGLE_IOS_URL_SCHEME=com.googleusercontent.apps.{ID}
 - react-native-edge-to-edge
 - @react-native-google-signin/google-signin
 - expo-image-picker
+- expo-build-properties
 
 ---
 
@@ -712,28 +756,34 @@ EXPO_PUBLIC_GOOGLE_IOS_URL_SCHEME=com.googleusercontent.apps.{ID}
 
 ### Configuration
 
-- **Framework** : Jest (jest-expo preset)
+- **Framework** : Jest 29 (jest-expo preset)
 - **Setup** : `test/setup.ts`
 - **Mocks** : MMKV, i18n
 - **TypeScript** : ts-jest
 
+### Résultat actuel : 82 tests, 0 échec
+
 ### Tests existants
 
-**Tests services** (`src/tests/services/`) :
+**Tests services** (`src/tests/services/`) — 11 fichiers :
 - avatarService, bookmarkService, commentService, feedService
 - followService, likeService, notificationService, searchService
-- sourceService, subscriptionService, trustService
+- **publisherService** (remplace sourceService)
+- **publisherSubscriptionService** (remplace subscriptionService)
+- trustService
 
 **Tests i18n** (`test/i18n.test.ts`)
 
 **Tests stockage** (`src/utils/storage/storage.test.ts`)
 
+**Tests API problem** (`src/services/api/apiProblem.test.ts`)
+
 ### Scripts
 
 ```bash
-npm test              # Run tests
-npm test:watch        # Mode watch
-npm test:maestro      # Tests UI Maestro
+pnpm test              # Run tests
+pnpm test:watch        # Mode watch
+pnpm test:maestro      # Tests UI Maestro
 ```
 
 ### Maestro (E2E)
@@ -742,15 +792,15 @@ Flows de test UI dans `.maestro/` pour les parcours utilisateur principaux.
 
 ---
 
-## 14. Build & Deploiement
+## 14. Build & Déploiement
 
-### Scripts de developpement
+### Scripts de développement
 
 ```bash
-npm start             # Demarrer le serveur dev Expo
-npm run android       # Build et lancer sur Android
-npm run ios           # Build et lancer sur iOS
-npm run web           # Demarrer en mode web
+pnpm start             # Démarrer le serveur dev Expo (dev-client)
+pnpm android           # Build et lancer sur Android
+pnpm ios               # Build et lancer sur iOS
+pnpm web               # Démarrer en mode web
 ```
 
 ### Builds EAS (`eas.json`)
@@ -766,102 +816,105 @@ npm run web           # Demarrer en mode web
 
 ```bash
 # iOS
-npm run build:ios:sim          # Simulateur iOS
-npm run build:ios:device       # Device iOS
-npm run build:ios:preview      # Preview iOS
-npm run build:ios:prod         # Production iOS
+pnpm build:ios:sim          # Simulateur iOS
+pnpm build:ios:device       # Device iOS
+pnpm build:ios:preview      # Preview iOS
+pnpm build:ios:prod         # Production iOS
 
 # Android
-npm run build:android:sim      # Simulateur Android
-npm run build:android:device   # Device Android
-npm run build:android:preview  # Preview Android
-npm run build:android:prod     # Production Android
+pnpm build:android:sim      # Simulateur Android
+pnpm build:android:device   # Device Android
+pnpm build:android:preview  # Preview Android
+pnpm build:android:prod     # Production Android
 
 # Web
-npm run bundle:web             # Export bundle web
-npm run serve:web              # Servir localement
+pnpm bundle:web             # Export bundle web
+pnpm serve:web              # Servir localement
 ```
 
-### Qualite
+> Il n'y a pas de CI/CD mobile automatique. Le déploiement device se fait via `eas update` manuellement.
+
+### Qualité
 
 ```bash
-npm run compile       # TypeScript check (no emit)
-npm run lint          # ESLint fix
-npm run lint:check    # ESLint check only
+pnpm compile       # TypeScript check (no emit)
+pnpm lint          # ESLint fix
+pnpm lint:check    # ESLint check only
 ```
 
 ### Debugging
 
 ```bash
 # Android : port forwarding pour adb
-npm run adb           # Forward ports 9090, 3000, 9001, 8081
+pnpm adb           # Forward ports 9090, 3000, 9001, 8081
 ```
 
-- **Reactotron** : configure en dev, avec plugin MMKV
+- **Reactotron** : configuré en dev, avec plugin MMKV
 - **React DevTools** : disponible en mode web
-- **Expo Dev Tools** : integre au serveur dev
+- **Expo Dev Tools** : intégré au serveur dev
 
 ---
 
 ## 15. Performance
 
-### Optimisations reseau
+### Optimisations réseau
 
-- **Stale time** : 5 minutes (reduit les refetches inutiles)
+- **Stale time** : 5 minutes (réduit les refetches inutiles)
 - **Retry** : 2 pour les queries, 0 pour les mutations
-- **Pas de refetch au focus** (specifique mobile)
-- **Debounce recherche** : 300ms + minimum 2 caracteres
+- **Pas de refetch au focus** (spécifique mobile)
+- **Debounce recherche** : 300ms + minimum 2 caractères
 
 ### Optimisations rendu
 
 - **Scroll infini** : pagination 20 items, `getNextPageParam`
-- **Deduplication** : Set<number> cote client pour eviter les doublons
-- **useMemo** : deduplication des articles
+- **Déduplication** : Set<number> côté client pour éviter les doublons
+- **useMemo** : déduplication des articles
 - **useCallback** : toggle bookmark
-- **Lazy loading** : image picker charge uniquement dans les settings compte
+- **Lazy loading** : image picker chargé uniquement dans les settings compte
 
 ### Stockage
 
 - **MMKV** : stockage local ultra-rapide (remplacement AsyncStorage)
-- **SecureStore** : tokens chiffres par le systeme
-- **QueryClient** : cache en memoire des donnees API
+- **SecureStore** : tokens chiffrés par le système (access token + refresh token)
+- **QueryClient** : cache en mémoire des données API
 
 ---
 
-## 16. Securite
+## 16. Sécurité
 
 ### Stockage des tokens
 
-| Donnee | Methode | Securite |
+| Donnée | Méthode | Sécurité |
 |--------|---------|----------|
-| JWT Token | `expo-secure-store` | Chiffre par le Keychain iOS / Keystore Android |
-| User JSON | MMKV | Chiffre au repos par l'OS |
-| Donnees sensibles | Jamais loguees/exposees | — |
+| JWT Access Token | `expo-secure-store` | Chiffré par le Keychain iOS / Keystore Android |
+| Refresh Token | `expo-secure-store` | Chiffré par le Keychain iOS / Keystore Android |
+| User JSON | MMKV | Chiffré au repos par l'OS |
+| Données sensibles | Jamais loguées/exposées | — |
 
 ### Communication
 
 - HTTPS uniquement en production (`https://api.syntheza.ovh/`)
-- Headers securises : `Content-Type`, `Accept`, `Authorization: Bearer`
+- Headers sécurisés : `Content-Type`, `Accept`, `Authorization: Bearer`
 
 ### Validation input
 
-- Regex email cote client
-- Password >= 8 caracteres
+- Regex email côté client
+- Password >= 8 caractères
 - Trim des textes avant soumission
 
 ### Error Boundary
 
-- Enveloppe l'app entiere dans `(auth)` et `(app)` layouts
+- Enveloppe l'app entière dans `(auth)` et `(app)` layouts
 - Affiche `ErrorDetails` en cas de crash
 - Mode `catchErrors="always"`
 
 ### Modules natifs requis
 
-Certaines fonctionnalites necessitent un dev client (pas Expo Go) :
+Certaines fonctionnalités nécessitent un dev client (pas Expo Go) :
 - `expo-image-picker` (upload avatar)
 - `@react-native-google-signin/google-signin` (OAuth Google)
 
-Apres installation de modules natifs :
+Après installation de modules natifs :
 ```bash
 npx expo run:ios      # Rebuild iOS
 npx expo run:android  # Rebuild Android
