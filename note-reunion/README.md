@@ -7,10 +7,13 @@ Ce dossier contient l'ensemble des comptes-rendus de réunions organisés par mo
 ```
 note-reunion/
 ├── README.md
-├── Janvier/
-├── Février/
-├── Mars/
-└── ...
+├── 2025-12 Décembre/
+├── 2026-01 Janvier/
+├── 2026-02 Février/
+├── 2026-03 Mars/
+├── 2026-04 Avril/
+├── 2026-05 Mai/
+└── 2026-06 Juin/
 ```
 
 ## 📝 Nomenclature
