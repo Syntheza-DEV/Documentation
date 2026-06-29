@@ -3,7 +3,7 @@ title:          Plan de Test Bêta — Syntheza
 subtitle:       MVP / Portée Bêta — Web + Mobile
 author:         Équipe Syntheza
 module:         G-EIP-700
-version:        2.2
+version:        2.3
 document:       beta_test_plan.md
 repository:     https://github.com/Syntheza-DEV
 ---
@@ -16,7 +16,7 @@ Cette section répond explicitement à : **“Quel site ? En ligne ou en local ?
 
 **Option A — En ligne (recommandé pour le jury)**
 
-- URL (staging ou prod) : [https://syntheza.app](https://syntheza.app)
+- URL (prod) : [https://syntheza.ovh](https://syntheza.ovh) — API : [https://api.syntheza.ovh](https://api.syntheza.ovh)
 - Identifiants jury (compte de test) :
    - Utilisateur : `jury_beta@mail.com` / Mot de passe : `demojury2026`
    - Operator (Back-office) : `ops_beta@mail.com` / Mot de passe : `opsdemo2026`
@@ -46,9 +46,9 @@ L’application mobile est accessible via **Expo Go** (aucun APK/TestFlight requ
 
 Pour garantir une démonstration stable et reproductible, nous fournissons :
 
-- Un **script de seed/dataset** pour générer des sources et des contenus de test :
+- Un **jeu de données de seed** (publishers, channels, items, comptes de démo) appliqué **automatiquement au démarrage du conteneur**, rejouable manuellement via :
    ```sh
-   npm run seed:demo
+   npx prisma db seed
    ```
 - Un **back-office minimal (Operator only)** pour :
    - déclencher manuellement la **synthèse quotidienne**
@@ -85,7 +85,7 @@ Ce Beta Test Plan sert à :
 ### 1.3 Fonctionnement (vue “utilisateur externe”)
 
 1. L’utilisateur crée un compte ou se connecte (web ou mobile).
-2. Il va dans **Settings → Sources** et ajoute une source (RSS ou Twitter stub).
+2. Il va dans **Discover** et s’abonne à un ou plusieurs **éditeurs** (Publishers) pour alimenter son feed.
 3. Le système collecte et normalise les items (titre, date, source, url).
 4. L’utilisateur consulte un **feed unifié** : contenus triés (ranking) et personnalisés (matching).
 5. Il peut **rechercher** un sujet précis.
@@ -102,7 +102,7 @@ Ce Beta Test Plan sert à :
 
 | Role name                   | Description                                                                                                                                                                                                                             |
 | --------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Utilisateur Beta (Pro)      | Utilisateur final. Configure ses sources, consulte le feed, recherche, lit des synthèses, comprend le Trust Factor, interagit (like/comment/bookmark/follow).                                                                           |
+| Utilisateur Beta            | Utilisateur final. S’abonne à des éditeurs, consulte le feed, recherche, lit des synthèses, comprend le Trust Factor, interagit (like/comment/bookmark/follow).                                                                          |
 | Operator (Back-office / QA) | Rôle interne. Peut : (1) déclencher manuellement la synthèse quotidienne, (2) déclencher une notification de test, (3) vérifier l’état de collecte/ingestion, (4) consulter logs/observabilité, (5) stabiliser l’environnement de démo. |
 
 ---
@@ -118,8 +118,8 @@ Toutes les fonctionnalités listées ci-dessous seront démontrées pendant la p
 | F3         | Utilisateur Beta | Réinitialiser un mot de passe                 | Déclencher “mot de passe oublié”, recevoir un reset, définir un nouveau mot de passe, se reconnecter.                                                |
 | F4         | Utilisateur Beta | Accéder à des pages sécurisées                | Vérifier que les pages privées sont inaccessibles sans login et que la session se maintient via refresh token.                                       |
 | F5         | Utilisateur Beta | Se déconnecter                                | Logout complet, suppression de la session et interdiction d’accès aux pages privées après logout.                                                    |
-| F6         | Utilisateur Beta | Ajouter une source (parcours guidé)           | Depuis Settings → Sources : ajouter une source RSS (coller URL) ou Twitter stub (choisir un topic), activer, sauvegarder.                            |
-| F7         | Utilisateur Beta | Gérer ses sources                             | Modifier/supprimer une source, et subscribe/unsubscribe pour influencer le feed.                                                                     |
+| F6         | Utilisateur Beta | S’abonner à un éditeur (Publisher)            | Depuis Discover → Éditeurs : s’abonner à un éditeur pour alimenter son feed.                                                                          |
+| F7         | Utilisateur Beta | Gérer ses abonnements                         | S’abonner / se désabonner d’éditeurs pour influencer le contenu du feed.                                                                              |
 | F8         | Utilisateur Beta | Vérifier la collecte normalisée               | Voir des items normalisés (titre/date/source/url) et un aperçu de collecte (UI/endpoint Operator).                                                   |
 | F9         | Utilisateur Beta | Consulter un feed personnalisé                | Consulter le feed unifié basé sur matching + ranking V1 (web + mobile).                                                                              |
 | F10        | Utilisateur Beta | Charger plus de contenus                      | Infinite scroll / pagination sur Feed et Discover (web + mobile).                                                                                    |
@@ -175,26 +175,24 @@ Ces scénarios sont conçus pour **prouver** les points critiques demandés par 
 4. Se connecter avec le compte jury
 5. Déclencher un refresh token **de manière démontrable** :
 
-   * Option 1 (recommandé) : environnement “demo” avec **TTL court** (ex : 60s)
-   * Option 2 : bouton Operator **“Simulate token expiry”**
+   * Option 1 (recommandé) : supprimer l’access token dans les DevTools (clé `syntheza:auth.token`), puis naviguer → déclenche un 401 puis le refresh automatique
+   * Option 2 : environnement “demo” avec **TTL d’access token court** (ex : 60s)
 6. Continuer à naviguer sans être déconnecté
    **Preuve attendue :** 401 géré → refresh → requête rejouée → utilisateur reste connecté
 
-### Scenario B — Preuve F6 : ajout de source compréhensible (utilisateur externe)
+### Scenario B — Preuve F6/F7 : s’abonner à un éditeur (Publisher)
 
-**Objectif :** démontrer un parcours “lambda”.
+**Objectif :** démontrer un parcours d’abonnement “lambda”.
 
-1. Aller dans **Settings → Sources**
-2. Cliquer **Add source**
-3. Choisir le type :
-
-   * **RSS** : coller URL RSS, nommer, activer
-   * **Twitter stub** : sélectionner un topic/placeholder, activer
-4. Cliquer **Save**
-5. Revenir au Feed
-6. Vérifier qu’au moins une carte affiche la source (nom/source visible)
-7. (Optionnel) unsubscribe et constater un changement sur refresh
+1. Aller dans **Discover** → onglet **Éditeurs**
+2. Choisir un éditeur (Publisher) proposé
+3. Cliquer pour **s’abonner** (toggle)
+4. Revenir au **Feed**
+5. Vérifier que des articles de cet éditeur apparaissent dans le feed
+6. (Optionnel) se désabonner et constater le changement au refresh
    **Preuve attendue :** l’utilisateur comprend quoi faire et voit l’impact sur le feed
+
+   > Note : la configuration des flux RSS bruts est réservée à l’administration (modèle Publisher/Channel) ; l’utilisateur final s’abonne à des éditeurs.
 
 ### Scenario C — Preuve F13 : synthèse quotidienne déclenchable manuellement
 
@@ -234,11 +232,11 @@ Le **Trust Factor** est un indicateur V1 qui aide l’utilisateur à répondre �
 
 ### Comment c’est calculé (V1, simple et vérifiable)
 
-La V1 utilise des signaux basiques et objectivables, par exemple :
+Le score sur 100 est calculé par l’IA (Gemini) selon une grille pondérée, transparente et explicable :
 
-* **Qualité des métadonnées** : présence titre/date/source/url (item incomplet → score baisse)
-* **Cohérence / duplication** : item dupliqué ou incohérent → score baisse
-* **Type de source** : RSS reconnu vs source non renseignée (signal léger)
+* **Recoupement des sources — 50 %** : même information confirmée par d’autres canaux indépendants
+* **Qualité des métadonnées — 30 %** : présence d’un auteur, d’une date, d’une URL valide, d’un flux standardisé
+* **Whitelist médias — 20 %** : bonus pour les sources de référence reconnues
 
 > Note : V1 = validation UX + disponibilité data. Les versions suivantes pourront intégrer plus d’analyses.
 
