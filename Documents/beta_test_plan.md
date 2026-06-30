@@ -1,6 +1,6 @@
 ---
-title:          Plan de Test Bêta — Syntheza
-subtitle:       MVP / Portée Bêta — Web + Mobile
+title:          Plan de Test Bêta · Syntheza
+subtitle:       MVP / Portée Bêta · Web + Mobile
 author:         Équipe Syntheza
 module:         G-EIP-700
 version:        2.3
@@ -14,14 +14,14 @@ Cette section répond explicitement à : **“Quel site ? En ligne ou en local ?
 
 ### 0.1 Client Web
 
-**Option A — En ligne (recommandé pour le jury)**
+**Option A : En ligne (recommandé pour le jury)**
 
-- URL (prod) : [https://syntheza.ovh](https://syntheza.ovh) — API : [https://api.syntheza.ovh](https://api.syntheza.ovh)
+- URL (prod) : [https://syntheza.ovh](https://syntheza.ovh) · API : [https://api.syntheza.ovh](https://api.syntheza.ovh)
 - Identifiants jury (compte de test) :
    - Utilisateur : `jury_beta@mail.com` / Mot de passe : `demojury2026`
    - Operator (Back-office) : `ops_beta@mail.com` / Mot de passe : `opsdemo2026`
 
-**Option B — En local (si l’environnement en ligne est indisponible)**
+**Option B : En local (si l’environnement en ligne est indisponible)**
 
 - Prérequis : Docker + Docker Compose
 - Commande :
@@ -50,9 +50,9 @@ Pour garantir une démonstration stable et reproductible, nous fournissons :
    ```sh
    npx prisma db seed
    ```
-- Un **back-office minimal (Operator only)** pour :
-   - déclencher manuellement la **synthèse quotidienne**
-   - déclencher une **notification in-app de test**
+- La page **Système** de l’admin (rôle ADMIN) pour :
+   - lancer le cron `daily-digest` manuellement depuis Admin → Système
+   - envoyer une notification de test depuis Admin → Système
    - visualiser l’état de la collecte (dernière exécution, erreurs, volume)
    - accéder à des informations d’observabilité (logs / métriques de base)
 
@@ -70,7 +70,7 @@ Contrairement aux plateformes fondées sur l’économie de l’attention, Synth
 * **Freelances & consultants** : veille sectorielle et concurrentielle.
 * **Cadres & veilleurs en entreprise** : gagner du temps au quotidien.
 
-Le MVP/Bêta vise à démontrer une valeur claire : **trouver rapidement l’essentiel** et le consommer dans une interface simple (web + mobile) — l’ambition produit étant de **réduire fortement le temps de veille quotidien**, d’une recherche fragmentée à quelques minutes de lecture synthétisée.
+Le MVP/Bêta vise à démontrer une valeur claire : **trouver rapidement l’essentiel** et le consommer dans une interface simple (web + mobile). L’ambition produit est de **réduire fortement le temps de veille quotidien**, d’une recherche fragmentée à quelques minutes de lecture synthétisée.
 
 ### 1.2 Objectifs du Beta Test Plan (exigences G-EIP)
 
@@ -94,7 +94,7 @@ Ce Beta Test Plan sert à :
    * une **synthèse IA** (résumé)
    * un **Trust Factor** (indicateur de fiabilité/qualité V1)
 7. Il peut interagir (like/commentaire/bookmark/follow).
-8. Un Operator (interne) peut déclencher certains traitements pour la démo (synthèse quotidienne, notification test) et surveiller l’état système via un back-office minimal.
+8. Un Operator (interne) peut lancer le cron `daily-digest` et envoyer une notification de test depuis Admin → Système, et surveiller l’état système via le back-office.
 
 ---
 
@@ -103,7 +103,7 @@ Ce Beta Test Plan sert à :
 | Role name                   | Description                                                                                                                                                                                                                             |
 | --------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Utilisateur Beta            | Utilisateur final. S’abonne à des éditeurs, consulte le feed, recherche, lit des synthèses, comprend le Trust Factor, interagit (like/comment/bookmark/follow).                                                                          |
-| Operator (Back-office / QA) | Rôle interne. Peut : (1) déclencher manuellement la synthèse quotidienne, (2) déclencher une notification de test, (3) vérifier l’état de collecte/ingestion, (4) consulter logs/observabilité, (5) stabiliser l’environnement de démo. |
+| Operator (Back-office / QA) | Rôle interne. Peut : (1) lancer le cron `daily-digest` depuis Admin → Système, (2) envoyer une notification de test depuis Admin → Système, (3) vérifier l’état de collecte/ingestion, (4) consulter logs/observabilité, (5) stabiliser l’environnement de démo. |
 
 ---
 
@@ -125,11 +125,11 @@ Toutes les fonctionnalités listées ci-dessous seront démontrées pendant la p
 | F10        | Utilisateur Beta | Charger plus de contenus                      | Infinite scroll / pagination sur Feed et Discover (web + mobile).                                                                                    |
 | F11        | Utilisateur Beta | Rechercher des contenus                       | Rechercher des articles/posts via Search/Discover (web + mobile).                                                                                    |
 | F12        | Utilisateur Beta | Lire une synthèse d’article                   | Ouvrir un contenu et afficher une synthèse IA non vide et cohérente.                                                                                 |
-| F13        | Operator         | Générer une synthèse quotidienne à la demande | Déclencher manuellement le batch “daily summary” depuis le back-office afin de prouver le résultat au jury.                                          |
+| F13        | Operator         | Générer une synthèse quotidienne à la demande | Lancer le cron `daily-digest` depuis Admin → Système afin de prouver le résultat au jury.                                                            |
 | F14        | Utilisateur Beta | Comprendre et utiliser le Trust Factor        | Voir un indicateur simple (score/label) aidant à estimer la fiabilité/qualité du contenu, expliqué en termes compréhensibles.                        |
 | F15        | Utilisateur Beta | Interagir avec un contenu                     | Like + commentaire + bookmark (persistants) sur web + mobile.                                                                                        |
 | F16        | Utilisateur Beta | Gérer son profil et son réseau                | Accéder au profil, upload avatar, follow/unfollow (web + mobile).                                                                                    |
-| F17        | Operator         | Déclencher une notification in-app            | Envoyer une notification de test depuis back-office et la voir apparaître côté utilisateur.                                                          |
+| F17        | Operator         | Déclencher une notification in-app            | Envoyer une notification de test depuis Admin → Système et la voir apparaître côté utilisateur.                                                      |
 | F18        | Operator         | Utiliser le back-office (ops/QA)              | Visualiser état ingestion/collecte, lancer les jobs manuels, consulter logs, vérifier stabilité, et valider le comportement des erreurs UI globales. |
 
 ---
@@ -165,7 +165,7 @@ Toutes les fonctionnalités listées ci-dessous seront démontrées pendant la p
 
 Ces scénarios sont conçus pour **prouver** les points critiques demandés par les évaluateurs (F4, F6, F13, F17, back-office).
 
-### Scenario A — Preuve F4 : routes protégées + refresh token
+### Scenario A · Preuve F4 : routes protégées + refresh token
 
 **Objectif :** prouver la sécurisation et le maintien de session en démo.
 
@@ -180,7 +180,7 @@ Ces scénarios sont conçus pour **prouver** les points critiques demandés par 
 6. Continuer à naviguer sans être déconnecté
    **Preuve attendue :** 401 géré → refresh → requête rejouée → utilisateur reste connecté
 
-### Scenario B — Preuve F6/F7 : s’abonner à un éditeur (Publisher)
+### Scenario B · Preuve F6/F7 : s’abonner à un éditeur (Publisher)
 
 **Objectif :** démontrer un parcours d’abonnement “lambda”.
 
@@ -194,24 +194,26 @@ Ces scénarios sont conçus pour **prouver** les points critiques demandés par 
 
    > Note : la configuration des flux RSS bruts est réservée à l’administration (modèle Publisher/Channel) ; l’utilisateur final s’abonne à des éditeurs.
 
-### Scenario C — Preuve F13 : synthèse quotidienne déclenchable manuellement
+### Scenario C · Preuve F13 : synthèse quotidienne déclenchable manuellement
 
 **Objectif :** rendre “batch daily summary” prouvable au jury.
 
-1. Operator ouvre back-office
-2. Cliquer **Run daily summary now**
-3. Attendre le statut “Completed”
-4. Afficher la synthèse générée (UI/endpoint)
-   **Preuve attendue :** 5/5 runs manuels OK
+1. Se connecter avec le compte ADMIN (ops_beta).
+2. Aller dans Admin → Système.
+3. Repérer le cron `daily-digest` dans la liste.
+4. Cliquer sur **Lancer** (exécution manuelle, possible même si le cron est en pause).
+5. Attendre le statut “Completed” dans l’historique d’exécutions.
+6. Consulter la synthèse du jour générée.
+   **Preuve attendue :** exécution manuelle réussie + digest affiché.
 
-### Scenario D — Preuve F17 : notifications in-app déclenchables
+### Scenario D · Preuve F17 : notifications in-app déclenchables
 
 **Objectif :** prouver la fonctionnalité notifications sans dépendre d’événements externes.
 
-1. Operator ouvre back-office
-2. Cliquer **Send test notification**
-3. Utilisateur voit la notification dans l’app (banner/center/badge)
-   **Preuve attendue :** notification visible et non dupliquée
+1. Admin → Système.
+2. Cliquer **Envoyer une notification de test**.
+3. La notification apparaît côté utilisateur (badge / centre de notifications).
+   **Preuve attendue :** notification visible, non dupliquée.
 
 ---
 
@@ -222,7 +224,7 @@ Le **Trust Factor** est un indicateur V1 qui aide l’utilisateur à répondre �
 
 ### Ce que l’utilisateur voit
 
-* Un **score** (ex : 0–100) ou un **label** (Low/Medium/High) affiché sur un contenu.
+* Un **score** (ex : 0 à 100) ou un **label** (Low/Medium/High) affiché sur un contenu.
 * L’objectif n’est pas de “dire la vérité”, mais de donner un **signal** pour prioriser la lecture.
 
 ### À quoi ça sert dans le MVP
@@ -234,9 +236,9 @@ Le **Trust Factor** est un indicateur V1 qui aide l’utilisateur à répondre �
 
 Le score sur 100 est calculé par l’IA (Gemini) selon une grille pondérée, transparente et explicable :
 
-* **Recoupement des sources — 50 %** : même information confirmée par d’autres canaux indépendants
-* **Qualité des métadonnées — 30 %** : présence d’un auteur, d’une date, d’une URL valide, d’un flux standardisé
-* **Whitelist médias — 20 %** : bonus pour les sources de référence reconnues
+* **Recoupement des sources (50 %)** : même information confirmée par d’autres canaux indépendants
+* **Qualité des métadonnées (30 %)** : présence d’un auteur, d’une date, d’une URL valide, d’un flux standardisé
+* **Whitelist médias (20 %)** : bonus pour les sources de référence reconnues
 
 > Note : V1 = validation UX + disponibilité data. Les versions suivantes pourront intégrer plus d’analyses.
 
@@ -244,24 +246,24 @@ Le score sur 100 est calculé par l’IA (Gemini) selon une grille pondérée, t
 
 ## 7. Back-office / QA / Ops (clair et démontrable)
 
-Le **back-office minimal (Operator only)** est un écran interne (ou un ensemble d’endpoints sécurisés) utilisé pour :
+La page **Système** de l’admin (rôle ADMIN, compte ops_beta) est l’interface interne utilisée pour :
 
 * **Voir l’état système** : dernière collecte, nombre d’items, erreurs éventuelles
-* **Déclencher manuellement** des jobs asynchrones :
+* **Déclencher manuellement** des jobs via Admin → Système :
 
-  * **Run daily summary now**
-  * **Send test notification**
+  * lancer le cron `daily-digest` (possible même si le cron est en pause)
+  * envoyer une notification de test à tous les utilisateurs
 * **Accéder à des éléments d’observabilité** :
 
   * logs applicatifs
   * indicateurs de base (succès/échec jobs, latences clés si disponibles)
 * **Sécuriser la démo** : s’assurer qu’il y a des données, que les jobs sont prouvables, et que les erreurs sont visibles côté UI.
 
-Ce back-office est un élément essentiel de la bêta car il rend le système **testable et démontrable** sans dépendre du hasard (batch nocturne, notifications aléatoires, etc.).
+Cette page est un élément essentiel de la bêta car elle rend le système **testable et démontrable** sans dépendre du hasard (batch nocturne, notifications aléatoires, etc.).
 
 ---
 
-## Annexe A — Matrice de traçabilité (tâches MVP → fonctionnalités bêta)
+## Annexe A · Matrice de traçabilité (tâches MVP → fonctionnalités bêta)
 
 > Objectif : prouver que les **63 tâches** d’implémentation sont couvertes par les features bêta, et relier chaque tâche à sa valeur produit. La colonne « Impact stratégique / business » explicite cet apport pour le jury.
 
