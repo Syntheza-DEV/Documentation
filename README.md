@@ -13,8 +13,19 @@ Les documents de référence se trouvent dans [`Documents/`](./Documents/).
 | [`backend_documentation.md`](./Documents/backend_documentation.md) | Documentation technique du backend : stack Node.js/TypeScript/Express/Prisma/PostgreSQL, architecture, endpoints API, modèles Prisma. |
 | [`frontend_web_documentation.md`](./Documents/frontend_web_documentation.md) | Documentation technique du frontend web : stack React 19/React Router 7/Vite/Tailwind v4/Radix UI, pages, services, gestion d'état. |
 | [`mobile_documentation.md`](./Documents/mobile_documentation.md) | Documentation technique de l'application mobile : stack Expo 54/React Native/Tamagui, navigation, composants, charte UI. |
-| [`beta_test_plan.md`](./Documents/beta_test_plan.md) | Plan de test bêta (v2.2) couvrant les périmètres web et mobile : scénarios, critères d'acceptation, métriques de succès. |
 | [`veille_scraping_comparatif.md`](./Documents/veille_scraping_comparatif.md) | Comparatif des solutions d'ingestion de données (RSS, Apify, APIs sociales, alternatives) avec analyse budget et recommandations d'architecture. |
+
+---
+
+## Livrables (PDF chartés)
+
+Documents de synthèse à la charte graphique Syntheza, dans [`Documents/`](./Documents/).
+
+| Fichier | Description |
+|---|---|
+| [`Syntheza-Beta-Test-Plan.pdf`](./Documents/Syntheza-Beta-Test-Plan.pdf) | Plan de test bêta (v2.3) : scénarios, critères d'acceptation, métriques, périmètres web et mobile. |
+| [`Syntheza-Plan-Action.pdf`](./Documents/Syntheza-Plan-Action.pdf) | Plan d'action : contexte, stack, proposition de valeur, roadmap 5 phases, stratégie de sourcing, projections et go-to-market. |
+| [`Syntheza-Moteur-Veille.pdf`](./Documents/Syntheza-Moteur-Veille.pdf) | Le moteur de veille : pipeline (ingestion, déduplication, résumé, Trust Factor, ranking) et pistes d'évolution (Trust Factor v2, moteur IA, agent autonome). |
 
 ---
 
