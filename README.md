@@ -4,6 +4,14 @@ Repo de documentation du projet **Syntheza**, plateforme de veille stratégique 
 
 ---
 
+## Contexte partagé — commencer ici
+
+Le dossier [`contexte/`](./contexte/README.md) centralise le contexte nettoyé pour l'équipe et ses assistants IA : produit, décisions, état et recette, contraintes techniques, exploitation, historique et jurys.
+
+Il est autonome et distinct de la documentation technique : aucune mémoire privée ni session d'agent n'est nécessaire. Son README donne l'ordre de lecture et une consigne prête à copier dans Claude. Les faits observés, les validations historiques et les hypothèses sont séparés et datés.
+
+---
+
 ## Documentation technique
 
 Les documents de référence se trouvent dans [`Documents/`](./Documents/).
