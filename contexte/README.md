@@ -23,6 +23,7 @@ Depuis un workspace qui contient ce dépôt, le point d'entrée est `Documentati
 1. [Produit et roadmap](./produit-et-roadmap.md) : promesse, cible, périmètre livré et ambitions.
 2. [État et recette](./etat-et-recette.md) : dernière validation retrouvée, correctifs et limites.
 3. [Décisions et historique](./decisions-et-historique.md) : trajectoire du projet et raisons des choix.
+4. [Centre d'opérations — pivot B2B](./centre-operations.md) : cible décideurs pros (octobre 2026), surface livrée, exploitation et recette.
 
 ### Comprendre les contraintes de réalisation
 
