@@ -12,11 +12,18 @@ La surface principale devient un **centre d'opérations configurable** ; le fil 
 
 | Surface | Contenu |
 | --- | --- |
-| Web `/ops` | Grille de widgets par espace : fil temps réel, pouls de la watchlist, alertes, radar rumeurs, brief 60 s, types d'événements, journal, santé des sources ; barre de focus par actif ; mode édition (ajout, ordre, largeur, hauteur, filtres) |
+| Navigation (refonte du 10/10, soir) | **Plus de colonne à gauche.** Une barre du haut porte les onglets d'espaces (renommer, définir par défaut, supprimer, « + » vers l'onboarding), les six destinations, la palette de commandes (`Ctrl+K`, `/`), les séances, la cloche (tiroir d'alertes, touche `a`) et le menu avatar (réglages, règles, sources, poste, thème, back-office, déconnexion). Sur mobile, une barre basse remplace la barre du haut. Raccourcis `g o/f/s/a/b/j` |
+| Web `/ops`, `/ops/w/:id` | Grille de widgets par espace, choisi par l'onglet : fil temps réel, pouls de la watchlist, alertes, radar rumeurs, brief 60 s, types d'événements, journal, santé des sources ; barre de focus par actif ; mode édition (ajout, ordre, largeur, hauteur, filtres) |
+| `/flux` | Fil plein écran : Mes actifs, Tout, Mes sources (abonnements), Favoris ; filtres rapides dans l'URL, séparateur lu/non lu, `j/k/Entrée/c/x/m` |
+| `/sujets` (nouveau) | Suivi des histoires (`GET /api/ops/stories`) classées par dynamique : qui a sorti l'info en premier, combien d'éditeurs l'ont reprise et à quel délai. Les infos isolées, non reprises, sont masquées par défaut |
+| `/actifs`, `/actifs/:id`, `/actifs/regles` | Liste des actifs à gauche et fiche à droite (mentions, fil, alertes, décisions), ajout, import de liste ; gestion des règles d'alerte |
+| `/brief` (nouveau) | Point de pré-ouverture ou de clôture : fenêtre « depuis la clôture » (Euronext 17 h 30, week-end sauté), 12 h ou 24 h ; à la une par actif ; « Copier le brief » en texte brut, impression |
+| `/journal`, `/alertes` | Journal en ajout seul exportable en CSV ; boîte d'alertes avec un onglet Système qui remplace l'ancienne page Notifications |
+| `/reglages/*` | Compte (ex-Profil), Poste (thème, densité, son, séances), Sources (catalogue, suivi, sourdine par éditeur), Sourdine (mots-clés), Notifications, Confidentialité, Sécurité, Données |
+| Pages retirées | Fil d'actualité, Synthèse IA (budget IA à 0, remplacée par Brief), Découvrir, Notifications, Profil, Paramètres, Watchlist : **toutes les anciennes URL redirigent** vers leur remplaçante |
 | Fiche décision | Horodatage publié/capté/latence, Trust Factor et provenance, raisons de l'impact, sources concordantes, consignation d'une décision |
-| `/onboarding` | Première connexion après le pivot, **obligatoire une fois pour tous les comptes** (`User.onboardedAt` nul) : bienvenue, métier, actifs de départ (à cocher ou à ajouter), règles d'alerte, récapitulatif. `/ops/setup` y redirige ; relancé depuis la watchlist, il crée un nouvel espace par défaut sans supprimer l'existant |
+| `/onboarding` | Première connexion après le pivot, **obligatoire une fois pour tous les comptes** (`User.onboardedAt` nul) : bienvenue, métier, actifs de départ (à cocher ou à ajouter), règles d'alerte, récapitulatif. `/ops/setup` y redirige ; relancé par le « + » des onglets d'espaces, il crée un nouvel espace par défaut sans supprimer l'existant |
 | Toutes les autres pages | Refonte du 10/10 sur un kit commun (`frontend-web/src/components/pro` : en-tête de page, panneaux, onglets, tuiles de chiffres, recettes de styles). Le fil, la recherche et l'article affichent le même signal que le centre d'opérations (impact, Trust Factor, sources, rumeur), le fil est trié par défaut du plus récent au plus ancien, et la colonne de droite a été supprimée. Le dégradé violet et les titres « wordmark » ont été retirés |
-| `/ops/watchlist`, `/ops/alerts`, `/ops/journal` | Actifs et mots-clés, règles d'alerte, boîte d'alertes, journal en ajout seul exportable en CSV |
 | API `/api/ops/*` | Voir le README du dépôt `backend` |
 | Mobile | **Hors périmètre** de ce lot |
 
