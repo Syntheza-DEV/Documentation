@@ -14,7 +14,8 @@ La surface principale devient un **centre d'opérations configurable** ; le fil 
 | --- | --- |
 | Web `/ops` | Grille de widgets par espace : fil temps réel, pouls de la watchlist, alertes, radar rumeurs, brief 60 s, types d'événements, journal, santé des sources ; barre de focus par actif ; mode édition (ajout, ordre, largeur, hauteur, filtres) |
 | Fiche décision | Horodatage publié/capté/latence, Trust Factor et provenance, raisons de l'impact, sources concordantes, consignation d'une décision |
-| `/ops/setup` | Choix du métier : actifs, règles d'alerte et widgets préconfigurés (tout reste modifiable) |
+| `/onboarding` | Première connexion après le pivot, **obligatoire une fois pour tous les comptes** (`User.onboardedAt` nul) : bienvenue, métier, actifs de départ (à cocher ou à ajouter), règles d'alerte, récapitulatif. `/ops/setup` y redirige ; relancé depuis la watchlist, il crée un nouvel espace par défaut sans supprimer l'existant |
+| Toutes les autres pages | Refonte du 10/10 sur un kit commun (`frontend-web/src/components/pro` : en-tête de page, panneaux, onglets, tuiles de chiffres, recettes de styles). Le fil, la recherche et l'article affichent le même signal que le centre d'opérations (impact, Trust Factor, sources, rumeur), le fil est trié par défaut du plus récent au plus ancien, et la colonne de droite a été supprimée. Le dégradé violet et les titres « wordmark » ont été retirés |
 | `/ops/watchlist`, `/ops/alerts`, `/ops/journal` | Actifs et mots-clés, règles d'alerte, boîte d'alertes, journal en ajout seul exportable en CSV |
 | API `/api/ops/*` | Voir le README du dépôt `backend` |
 | Mobile | **Hors périmètre** de ce lot |
