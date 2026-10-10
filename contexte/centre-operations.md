@@ -94,6 +94,26 @@ Offres tirées du business plan, hors taxes, en contrat annuel après 30 jours d
 - **Back-office** : liste des organisations (offre, statut, sièges, tableaux de bord, dernière activité, échéance), création, modification de l'offre, du statut, des sièges et des dates, prolongation du pilote, ajout ou retrait de membres, clés API en lecture. S'y ajoute une estimation du revenu mensuel (MRR) aux prix du business plan, hors taxes.
 - **Refus liés à l'offre** : 403 `PLAN_LIMIT`, avec un message qui nomme l'offre incluant la fonction (« Disponible avec l'offre Équipe »).
 
+### Audit 2, nouvelles fonctions et correctifs (10/10/2026, soir)
+
+**Nouvelles fonctions** :
+- **Aperçu des correspondances** dans les éditeurs d'actifs et de règles : nombre d'infos sur 72 h, détail par jour, derniers titres, infos écartées par les exclusions, estimation du nombre d'alertes par jour. La règle est évaluée par la même fonction que le moteur d'alertes (`ruleMatches`).
+- **Revue du journal de décisions** : l'issue de chaque décision (pertinente, à revoir, non pertinente, avec une note) est **ajoutée** à côté de la décision, jamais par modification. Filtres dans l'URL, pagination, statistiques, colonnes de revue dans l'export CSV.
+- **Qui sort l'info** (page Sujets) : par éditeur, le nombre de premières dépêches, la part, le délai médian quand il reprend une info, et un badge source officielle. **Co-mentions** (page Actifs) : les paires d'actifs suivis cités dans les mêmes infos sur 7 jours.
+- **Vues enregistrées** sur Flux et Sujets (30 par utilisateur), épinglables comme widget de fil filtré sur le tableau de bord.
+
+**Correctifs** :
+- **Alertes** : l'évaluation est regroupée, au plus une toutes les 20 s. Les envois e-mail et webhook passent dans une file, hors du verrou d'ingestion, pour qu'un webhook lent ne bloque plus le relevé. Une lecture tronquée garde son curseur.
+- **Regroupement des sujets** : index inversé et expiration à 18 h ; 5 000 infos sont traitées en moins d'une seconde. Le cache d'analyse est validé par empreinte.
+- **Job de classement** : traitement par lots de 1 000. Avant, il dépassait la limite de paramètres Postgres. Index ajoutés pour les requêtes chaudes. Les tableaux de bord sont résolus en une seule requête.
+- **Brief e-mail** : rattrapage si la minute exacte est manquée. Le digest suit l'heure de Paris. Les caches mémoire sont bornés.
+- **Ingestion** : repli sur doublon de clé ; les échecs d'entrée déclenchent un recul ; une désactivation faite par un admin est conservée lors de la synchronisation.
+- **Signal** : une cession d'actions par un dirigeant ou une prise de participation n'est plus classée fusion-acquisition ; « tax » donne Fiscalité, un vote de budget donne Législation. Sur 290 titres réels, le taux d'infos typées passe de 49,7 % à 81,7 %. En prod, sur 100 infos, les infos sans type passent de 65 à 50.
+- **Modèles** : les actifs existants reçoivent les exclusions des modèles qui leur manquent. Exemple : « S&P 500 » sans « Wall Street Journal ».
+- **Web** : le tiroir d'alertes ne marque plus tout comme lu à l'ouverture ; « Charger plus » dans le Flux et les Alertes ; une requête partagée par point d'API ; Brief rafraîchi chaque minute ; « Actifs » partout au lieu de « Watchlist » ; Alertes dans la navigation ; Ctrl+K ou ⌘K selon la plateforme ; Brief et zone sûre sur mobile ; annulation de « Tout marquer vu ».
+- **Rétention** : une purge nocturne est prête mais **livrée en pause**, parce que la suppression est irréversible. Elle viserait les infos de plus de 30 jours sans favori, commentaire, décision ni alerte, les notifications de plus de 30 jours et les événements d'alerte de plus de 90 jours. Elle s'active dans *Admin > Système*.
+- **Restent ouverts** : le regroupement des événements SSE côté serveur, le cache des lectures, les collisions d'empreinte sans URL, un verrou par flux pour plusieurs instances. Par ailleurs, la fenêtre de 7 jours approche le plafond d'analyse de 1 500 infos.
+
 ## Exploitation : ce qui a changé
 
 - **Schéma** : le workflow backend lance `prisma db push` **sans** `--accept-data-loss` avant de recréer le conteneur. Constaté le 10/10 : « Your database is now in sync ». Un diff destructif ferait échouer le déploiement, et l'ancien conteneur continuerait de servir.
