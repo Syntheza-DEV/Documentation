@@ -36,8 +36,9 @@ Enrichissement **lexical et déterministe** (`backend/src/services/ops/signal.ts
 - **impact** (faible / modéré / fort) avec ses raisons affichées ;
 - **actifs touchés** : mots-clés de la watchlist, cherchés **dans le titre et le chapô seulement** (une mention au fil du texte ne marque plus l'info). Sigles et tickers en majuscules, et termes courts à majuscule (« Fed »), sont recherchés à l'identique ; le libellé d'un actif ne sert de terme que s'il n'a aucun mot-clé ;
 - **recoupement** : même sujet chez plusieurs éditeurs dans une fenêtre de 18 h, comparé à la première dépêche du sujet (pas de chaînage) ; chaque info indique la première dépêche et la taille du sujet ;
-- **ton du texte** (positif / négatif / mitigé / neutre, lexical) : ce n'est jamais une direction de marché ni une recommandation ;
-- **chiffres clés** (%, points de base, montants) extraits du titre et du chapô, trois au plus, rien d'inventé ;
+- **ton du texte** (positif / négatif / mitigé / neutre, lexical) : ce n'est jamais une direction de marché ni une recommandation. Il s'affiche ▲ vert, ▼ rouge, ◆ ambre ; l'infobulle précise « vocabulaire de la dépêche, pas une direction de marché » ;
+- **chiffres clés** (%, points de base, montants) extraits du titre et du chapô, trois au plus, rien d'inventé. Une variation signée s'affiche telle qu'écrite : `+` en vert, `-` ou `−` en rouge ; un montant sans signe reste neutre ;
+- **couleurs du signal** (10/10) : on n'utilise les couleurs sémantiques de la charte que pour des états réels. Impact fort : point et pastille rouges, avec un fond rouge très léger sur la ligne ; impact modéré : point ambre. Confiance faible en rouge, moyenne en ambre. Recoupement par au moins 3 sources (`×3`) en vert. Compteurs « Impact fort » en rouge et « Rumeurs » en ambre, seulement s'ils sont non nuls. Accélération des mentions à ×2 ou plus en ambre. Le reste demeure monochrome ;
 - **Trust Factor** : le score stocké prime. À défaut, une **estimation provisoire** (fiabilité de l'éditeur + recoupement), toujours marquée « ≈ » et expliquée comme telle.
 
 ### Poste trader (audit du 10/10/2026)
