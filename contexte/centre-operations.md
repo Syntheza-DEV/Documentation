@@ -4,7 +4,7 @@
 
 ## Décision produit
 
-La cible n'est plus le grand public mais les **décideurs professionnels** qui engagent de l'argent sur une info (B2B, licence par siège). Promesse : *de la news à la décision en moins de 60 s* - « Décider vite. Décider juste. » Six groupes de métiers sont visés : Trading, Gestion d'actifs (P1), Finance d'entreprise, Énergie & matières premières, Risque & conformité (P2), Médias & communication (P3).
+La cible n'est plus le grand public mais les **décideurs professionnels** qui engagent de l'argent sur une info (B2B, licence par siège). Promesse : *de la news à la décision en moins de 60 s* - « Décider vite. Décider juste. » Six groupes de métiers sont visés : Trading, Gestion d'actifs (P1), Finance d'entreprise, Énergie & matières premières, Risque & conformité (P2), Médias & communication (P3). Un septième, **Direction générale** (PDG, DG, comités de direction), a été ajouté le 10/10 après l'audit par métier.
 
 La surface principale devient un **centre d'opérations configurable** ; le fil d'actualité reste disponible, en second plan (« Lecture »). Syntheza **informe, ne recommande jamais** (AMF) : aucune formulation d'achat ou de vente.
 
@@ -52,6 +52,24 @@ Enrichissement **lexical et déterministe** (`backend/src/services/ops/signal.ts
 - **Calendrier économique** non livré : sans source fiable, une date fausse coûterait plus qu'une absence.
 
 Le journal de décisions est **en ajout seul** (aucune route de modification ni de suppression) et fige la vue de l'info au moment de la décision, pour servir de piste d'audit.
+
+### Audit par métier (10/10/2026)
+
+Quatre audits ont été menés en se mettant à la place de chaque métier : trader et énergie, gestionnaire d'actifs et risque, média et communication, PDG et finance d'entreprise. Rapports complets dans `contexte/audits/` ; environ 2 000 URL de flux testées avec le client de production.
+
+- **« Tableau de bord »** remplace « Poste » et « Espace » partout. Les tableaux de bord existants nommés « Poste <Métier> » sont renommés au démarrage ; un nom choisi par l'utilisateur n'est pas touché. Les préférences personnelles deviennent *Réglages > Affichage*.
+- **Catalogue** : 317 éditeurs et 677 flux au 10/10, découpés en `backend/src/services/ops/catalog/finance.ts` et `general.ts`. Chaque flux porte une **rubrique** (Une, Économie, Politique, Santé, Sport...), une **langue**, et son éditeur une **nature** (officiel, entreprise, presse, communiqués, agrégateur, média d'État, blog). La synchronisation au démarrage crée les éditeurs et flux manquants, met à jour rubriques et langues, et désactive les flux retirés (`retiredFeeds`) sans rien supprimer. Un test d'intégrité vérifie les slugs, les URL, l'absence de tiret cadratin, et que chaque préréglage pointe vers des flux actifs.
+- **Sources choisies flux par flux** : un tableau de bord Trading peut lire Le Monde Économie sans Le Monde Sport. Les préréglages métier sont définis par éditeur et par rubrique, de 62 flux (Énergie) à 240 (Médias). Les lectures du tableau de bord filtrent **en base** sur ses flux avant le plafond de la fenêtre, et le recoupement se compte parmi ses propres sources.
+- **Signal** : 16 nouveaux types d'événements (politique, élections, législation, justice, fiscalité, social, chaîne d'approvisionnement, crédit et financement, gouvernance, réputation, sécurité et terrorisme, catastrophes et météo, santé publique, décès, délinquance financière, ESG). Les faux positifs relevés sur des titres réels sont corrigés (« strikes a deal », rachat d'actions, « at stake », fusion nucléaire...). S'y ajoutent les mots-clés d'exclusion par actif et par règle, la règle des acronymes (OPEC+, Opep+), les pluriels, les ISIN, les unités métier ($/baril, €/MWh, $/MMBtu...), un drapeau sur les titres tiers formulés en conseil (AMF), et des dates de flux tolérantes (sans année, sans fuseau, jj/mm/aaaa, texte, futures). Les entrées sans date du premier relevé d'un flux sont marquées comme arriéré et ne déclenchent rien.
+- **Alertes** : portée (watchlist ou tout), exclusions, ton, rumeurs (seulement ou exclues), sources officielles seulement, nombre minimal de sources, heures calmes, envoi par e-mail et webhook (https, garde anti-SSRF). L'évaluation est exhaustive : chaque info nouvelle est confrontée une fois à chaque règle, même par milliers. Un **brief quotidien par e-mail** est réglable à l'heure voulue (*Réglages > Notifications*).
+- **Mon entreprise** (onboarding de Direction générale, Finance d'entreprise et Médias) : société, autres noms, code boursier, concurrents, clients et fournisseurs deviennent des actifs avec un rôle, et des règles dédiées s'y rattachent. **Suivre une société ou un sujet** crée deux sources privées de recherche, Google Actualités et Bing Actualités. Décision du propriétaire : risque assumé sur les conditions d'utilisation de ces deux services, limité à des sources privées (20 au maximum par compte).
+- **Web** : filtres par rubrique, sources officielles, ton et langue dans le Flux et les widgets ; badge « Source officielle » ; titres en forme de conseil atténués ; exports CSV du Flux et des alertes ; Brief « depuis ma dernière visite » ; séances de Tokyo, Hong Kong, Sydney et Zurich (pauses déjeuner, heure d'été) ; libellés de décision par métier.
+- **Ingestion** : relevé de 16 flux en parallèle, au plus un flux par site et par tic (au plus 12 requêtes par minute sur un même site), recul de tout le site sur 429, User-Agent identifiable (`SynthezaBot/1.0`). Les nœuds XML transmis en objet par le parseur (`guid` à attributs, auteur Atom) sont convertis en texte : trois flux entiers échouaient avant ce correctif.
+
+**Limites connues au 10/10** :
+- Depuis l'hôte OVH, environ 45 flux répondent 403, faute de réponse acceptée des sites pour les IP de serveur : Les Echos (9 flux), SEC, BLS, CISA, GlobeNewswire, FXStreet... Ils restent au catalogue, signalés « en panne », avec un recul automatique ; il faut les réévaluer après le changement de User-Agent.
+- Pas d'AFP, de Reuters ni d'AP (aucun flux public). Pas de JORF ni de Légifrance : il faudrait l'API PISTE, avec un compte à créer. Pas de données d'électricité en flux (RTE, EPEX, ENTSO-E).
+- Non livrés, faute de source fiable ou parce qu'il faut d'abord un modèle multi-utilisateur : l'agenda économique, le partage d'équipe (tableaux et règles communs), les taux de référence officiels, le regroupement des sujets entre français et anglais.
 
 ## Exploitation : ce qui a changé
 
