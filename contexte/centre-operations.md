@@ -69,7 +69,30 @@ Quatre audits ont été menés en se mettant à la place de chaque métier : tra
 **Limites connues au 10/10** :
 - Depuis l'hôte OVH, environ 45 flux répondent 403, faute de réponse acceptée des sites pour les IP de serveur : Les Echos (9 flux), SEC, BLS, CISA, GlobeNewswire, FXStreet... Ils restent au catalogue, signalés « en panne », avec un recul automatique ; il faut les réévaluer après le changement de User-Agent.
 - Pas d'AFP, de Reuters ni d'AP (aucun flux public). Pas de JORF ni de Légifrance : il faudrait l'API PISTE, avec un compte à créer. Pas de données d'électricité en flux (RTE, EPEX, ENTSO-E).
-- Non livrés, faute de source fiable ou parce qu'il faut d'abord un modèle multi-utilisateur : l'agenda économique, le partage d'équipe (tableaux et règles communs), les taux de référence officiels, le regroupement des sujets entre français et anglais.
+- Non livrés, faute de source fiable : l'agenda économique, les taux de référence officiels, le regroupement des sujets entre français et anglais. Le partage d'équipe est livré avec les offres (voir ci-dessous).
+
+### Offres et types de compte (10/10/2026)
+
+Offres tirées du business plan, hors taxes, en contrat annuel après 30 jours de pilote. **Pas de paiement en ligne ni de site vitrine pour l'instant** (décision du propriétaire) : les offres sont attribuées dans le back-office (*Admin > Organisations*).
+
+| | Pro | Équipe | Entreprise |
+| --- | --- | --- | --- |
+| Prix | 185 €/siège/mois | 140 €/siège/mois, 5 sièges minimum | sur devis (environ 2 000 €/mois) |
+| Tableaux de bord par membre | 5 | 10 | 50 |
+| Sources privées par membre | 20 | 20 | 50 |
+| Alertes par e-mail | oui | oui | oui |
+| Webhooks (Slack, Teams) | non | oui | oui |
+| Membres, invitations, rôles | non | oui | oui |
+| Tableaux de bord partagés, journal d'équipe | non | oui | oui |
+| API (`/api/v1`, clés `sz_live_…`, 120 requêtes/min par clé) | non | non | oui |
+| Engagement de service | non | non | oui |
+
+- **Modèle** : tout utilisateur appartient à une **organisation** (`Organization`, `OrganizationMember`). Un compte Pro ou en pilote est une organisation personnelle d'un siège, créée au premier accès : offre Pro, statut Pilote, 30 jours. Rôles dans l'organisation : Propriétaire, Administrateur, Membre ; ils sont distincts du rôle plateforme (USER à ADMIN), qui reste celui du back-office.
+- **Statuts** : Pilote, Actif, Expiré. L'accès s'arrête aussi quand la date de fin du pilote ou du contrat est passée. **À l'échéance, le compte passe en lecture seule** : les tableaux de bord restent consultables, figés à la date de fin ; plus de temps réel, d'alertes ni de modification (403 `READ_ONLY`) ; rien n'est supprimé. Un bandeau annonce le pilote (J-N) puis la lecture seule. Les comptes ADMIN de la plateforme gardent toujours l'accès.
+- **Comptes existants** : les ADMIN forment l'organisation Entreprise « Équipe Syntheza » (active, sièges = nombre d'admins + 5) ; les autres comptes démarrent un pilote de 30 jours au premier accès après la mise en production.
+- **Équipe** : invitation par e-mail (lien valable 7 jours, jeton stocké haché, adresse vérifiée à l'acceptation), dans la limite des sièges (membres + invitations en attente). Un membre qui part ou qui est retiré retrouve une organisation personnelle **en lecture seule**, sans nouveau pilote. Partage d'un tableau de bord avec l'équipe, en lecture pour les autres membres : ils voient les sources et la disposition du propriétaire, avec leurs propres actifs. Journal « Moi / Équipe ».
+- **Back-office** : liste des organisations (offre, statut, sièges, tableaux de bord, dernière activité, échéance), création, modification de l'offre, du statut, des sièges et des dates, prolongation du pilote, ajout ou retrait de membres, clés API en lecture. S'y ajoute une estimation du revenu mensuel (MRR) aux prix du business plan, hors taxes.
+- **Refus liés à l'offre** : 403 `PLAN_LIMIT`, avec un message qui nomme l'offre incluant la fonction (« Disponible avec l'offre Équipe »).
 
 ## Exploitation : ce qui a changé
 
