@@ -26,9 +26,21 @@ Enrichissement **lexical et déterministe** (`backend/src/services/ops/signal.ts
 
 - **types d'événements** : banque centrale, macro, résultats, M&A, notation, géopolitique et sanctions, énergie et matières premières, régulation, défaillance, incident, marchés ;
 - **impact** (faible / modéré / fort) avec ses raisons affichées ;
-- **actifs touchés** : mots-clés de la watchlist. Sigles et tickers en majuscules, et termes courts à majuscule (« Fed »), sont recherchés à l'identique ; le libellé d'un actif ne sert de terme que s'il n'a aucun mot-clé ;
-- **recoupement** : même sujet chez plusieurs éditeurs dans une fenêtre de 18 h, comparé à la première dépêche du sujet (pas de chaînage) ;
+- **actifs touchés** : mots-clés de la watchlist, cherchés **dans le titre et le chapô seulement** (une mention au fil du texte ne marque plus l'info). Sigles et tickers en majuscules, et termes courts à majuscule (« Fed »), sont recherchés à l'identique ; le libellé d'un actif ne sert de terme que s'il n'a aucun mot-clé ;
+- **recoupement** : même sujet chez plusieurs éditeurs dans une fenêtre de 18 h, comparé à la première dépêche du sujet (pas de chaînage) ; chaque info indique la première dépêche et la taille du sujet ;
+- **ton du texte** (positif / négatif / mitigé / neutre, lexical) : ce n'est jamais une direction de marché ni une recommandation ;
+- **chiffres clés** (%, points de base, montants) extraits du titre et du chapô, trois au plus, rien d'inventé ;
 - **Trust Factor** : le score stocké prime. À défaut, une **estimation provisoire** (fiabilité de l'éditeur + recoupement), toujours marquée « ≈ » et expliquée comme telle.
+
+### Poste trader (audit du 10/10/2026)
+
+- **Ligne d'info lisible d'un regard**, identique partout : actifs en tête, titre en gras si l'impact est au moins modéré, ton, chiffres clés, fiabilité affichée seulement si elle pose problème, rumeur fraîche ou « à confirmer » après 6 h, sources, éditeur. Densité compacte ou confort.
+- **Séances** Paris, Francfort, Londres et NYSE en tête d'écran. Les jours fériés sont calculés par règle, et les clôtures anticipées comme l'heure d'été sont gérées.
+- **Alertes** : son et notifications de bureau (activés dans Paramètres, onglet Poste), compteur dans l'onglet du navigateur. Sans plancher explicite, une règle exige un impact au moins modéré.
+- **Fil temps réel** : filtres rapides conservés dans l'URL et séparateur « nouvelles depuis », partagé entre appareils. Raccourcis j, k, Entrée, c (copier pour chat), x (masquer l'éditeur), m (tout marquer vu) et ? (aide).
+- **Page actif** `/ops/assets/:id`, import en masse de la watchlist, **sourdine** par éditeur ou mot-clé (Paramètres, onglet Sourdine). La sourdine s'applique au centre d'opérations, aux alertes et au fil, mais pas à la recherche.
+- **Aucune cotation** : actualités uniquement, faute de licence de données de marché.
+- **Calendrier économique** non livré : sans source fiable, une date fausse coûterait plus qu'une absence.
 
 Le journal de décisions est **en ajout seul** (aucune route de modification ni de suppression) et fige la vue de l'info au moment de la décision, pour servir de piste d'audit.
 
