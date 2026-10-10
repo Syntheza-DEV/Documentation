@@ -39,7 +39,7 @@ publisher/channel mobile, et corriger les dernières finitions prod identifiées
 - **Échéance** : 24/06/2026
 
 ### Finitions prod
-- **Discussion** : Deux points identifiés — l'avatar (URLs API relativisées côté
+- **Discussion** : Deux points identifiés - l'avatar (URLs API relativisées côté
   front + header CORP `same-origin` bloquant l'image cross-origin sur
   `/uploads`), et un bug CI de déploiement (le conteneur n'est jamais recréé
   quand le tag `:latest` est inchangé).

@@ -29,7 +29,7 @@ activation IA) et la suppression des données mock côté front.
 
 ## Discussions & Décisions
 
-### Google Auth & responsive — livrés
+### Google Auth & responsive - livrés
 - **Discussion** : Le bouton Google Sign-In est opérationnel sur le web, le
   responsive est finalisé sur l'ensemble des vues.
 - **Décision** : Chantier clos côté web, on bascule sur l'intégration des

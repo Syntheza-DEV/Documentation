@@ -42,7 +42,7 @@ correction du suivi de budget Gemini.
 - **Décision** : Pricing corrigé + persistance de l'usage en base de données.
 - **Responsable** : @Ilhan
 
-### Bug feed — résumé IA
+### Bug feed - résumé IA
 - **Discussion** : Le feed ne retournait pas le résumé IA (`summary` codé en dur
   à `null`), et le contenu n'était pas nettoyé du HTML.
 - **Décision** : Correctif appliqué (retour du résumé + strip HTML).

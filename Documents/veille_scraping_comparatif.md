@@ -36,7 +36,7 @@ Avant de chiffrer un coût, il faut comprendre qu'**aucun acteur (pas même Melt
 | Blogs + newsletters (Substack, Medium, RSS) | ~2 M posts | ~50 k |
 | Podcasts | ~100 k épisodes | ~10 k (transcription nécessaire) |
 | Forums tech (HN, Stack Overflow, Discords publics) | ~1 M | ~50 k |
-| **Total "pertinent"** | — | **~7-8 M items / jour** |
+| **Total "pertinent"** | - | **~7-8 M items / jour** |
 | | | **≈ 220 M / mois** |
 
 Conclusion : "tout savoir" en couvrant 100% est économiquement impossible. La vraie question est : **quel pourcentage de couverture + quelle latence**.
@@ -58,7 +58,7 @@ Conclusion : "tout savoir" en couvrant 100% est économiquement impossible. La v
 | Starter | $29 | $29 | 32 GB | 32 | Chat |
 | Scale | $199 | $199 | 128 GB | 128 | Priority chat |
 | Business | $999 | $999 | 256 GB | 256 | Account manager |
-| Enterprise | Sur devis | — | — | — | Dédié |
+| Enterprise | Sur devis | - | - | - | Dédié |
 
 Les crédits inclus sont dépensables sur les actors. Au-delà : pay-as-you-go au même tarif (pas de markup). Les plans payants donnent des discounts sur le Store (Bronze / Silver / Gold).
 
@@ -158,7 +158,7 @@ Une fois les items collectés, il faut les transformer en signal exploitable. Co
 
 ## 4. Trois paliers de couverture avec budget réel
 
-### Tier 0 — MVP / Démo (50 articles/jour ≈ 1 500/mois)
+### Tier 0 - MVP / Démo (50 articles/jour ≈ 1 500/mois)
 
 Cible : valider techniquement le pipeline de bout en bout sans engager de budget.
 
@@ -176,7 +176,7 @@ Couverture estimée : <0.001% du volume mondial pertinent. Suffit pour démo et 
 
 ---
 
-### Tier 1 — Newsroom Pro (10 k items/jour ≈ 300 k/mois)
+### Tier 1 - Newsroom Pro (10 k items/jour ≈ 300 k/mois)
 
 Cible : produit commercialisable pour des équipes comm, marketing ou intelligence économique avec 5-50 utilisateurs internes.
 
@@ -200,7 +200,7 @@ Couverture estimée : ~5% du volume pertinent mondial. Latence : 30 min à 2h se
 
 ---
 
-### Tier 2 — Intelligence Économique (300 k items/jour ≈ 9 M/mois)
+### Tier 2 - Intelligence Économique (300 k items/jour ≈ 9 M/mois)
 
 Cible : SaaS payant à $100-500/mois par utilisateur ou contrats enterprise mid-market.
 
@@ -227,7 +227,7 @@ Couverture estimée : ~15-20% du volume pertinent. Latence : 5-30 min.
 
 ---
 
-### Tier 3 — Panoptique (10 M items/jour ≈ 300 M/mois)
+### Tier 3 - Panoptique (10 M items/jour ≈ 300 M/mois)
 
 Cible : concurrencer Meltwater, Brandwatch, Talkwalker, Cision sur le marché enterprise. Contrat moyen $50k-500k/an par client.
 
@@ -279,16 +279,16 @@ Couverture estimée : 40-60% du volume pertinent. C'est ce que Meltwater opère 
 
 ### Trajectoire conseillée
 
-1. **Phase 1 — Maintenant à 3 mois (Tier 0)**
+1. **Phase 1 - Maintenant à 3 mois (Tier 0)**
  Brancher Apify Starter ($29/mois), ingérer 5-10 actors ciblés (Twitter, Reddit, LinkedIn Posts, YouTube), garder GDELT + RSS en complément. Coût total : **<$100/mois**. Objectif : prouver la couverture multi-sources et le trust scoring.
 
-2. **Phase 2 — 3 à 9 mois (Tier 1)**
+2. **Phase 2 - 3 à 9 mois (Tier 1)**
  Premiers clients beta payants. Ajouter proxies résidentiels, NewsAPI.ai, transcription des vidéos top trust. Budget cible : **$1 500-2 000/mois infra**, justifié dès 5 clients à $200/mois.
 
-3. **Phase 3 — 9-18 mois (Tier 2)**
+3. **Phase 3 - 9-18 mois (Tier 2)**
  Décollage SaaS, contrats mid-market. Recrutement d'un data engineer dédié à l'ingestion. Budget : **~$10k/mois infra + équipe**. Cible ARR ~$500k.
 
-4. **Phase 4 — au-delà (Tier 3)**
+4. **Phase 4 - au-delà (Tier 3)**
  À envisager uniquement avec une levée Série A et un positionnement enterprise clair. Pas avant 24 mois.
 
 ### Pièges à éviter

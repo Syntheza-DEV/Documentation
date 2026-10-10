@@ -1,4 +1,4 @@
-# Syntheza Mobile — Documentation Technique
+# Syntheza Mobile - Documentation Technique
 
 **Version** : Charte ISO Mobile (juin 2026)
 **Stack** : Expo SDK 54 / React Native 0.81.5 / React 19.1.0 / TypeScript / Tamagui
@@ -149,15 +149,15 @@ Initialise dans l'ordre :
 #### Groupe Auth (`(auth)/`)
 
 Stack navigator avec animation `slide_from_right` :
-- `login` — Connexion email/password + Google OAuth
-- `register` — Inscription avec validation
-- `forgot-password` — Reset password par email
+- `login` - Connexion email/password + Google OAuth
+- `register` - Inscription avec validation
+- `forgot-password` - Reset password par email
 
 #### Groupe App (`(app)/`)
 
 Protégé par `AuthProvider` (redirect vers login si non authentifié).
 
-**Tab Navigation (`(tabs)/`)** — 5 onglets :
+**Tab Navigation (`(tabs)/`)** - 5 onglets :
 
 | Onglet | Écran | Icône | Description |
 |--------|-------|-------|-------------|
@@ -168,11 +168,11 @@ Protégé par `AuthProvider` (redirect vers login si non authentifié).
 | Profil | `profile.tsx` | user | Mon profil |
 
 **Écrans supplémentaires :**
-- `article/[id]` — Détail article avec commentaires
-- `user/[id]` — Profil d'un autre utilisateur
-- `user/[id]/followers` — Liste des followers
-- `user/[id]/following` — Liste des suivis
-- `settings/*` — 7 écrans de paramètres
+- `article/[id]` - Détail article avec commentaires
+- `user/[id]` - Profil d'un autre utilisateur
+- `user/[id]/followers` - Liste des followers
+- `user/[id]/following` - Liste des suivis
+- `settings/*` - 7 écrans de paramètres
 
 **Total : 20 écrans (hors layouts)**
 
@@ -720,11 +720,11 @@ EXPO_PUBLIC_GOOGLE_IOS_URL_SCHEME=com.googleusercontent.apps.{ID}
 
 ### Config multi-environnement (`config/`)
 
-- `config.base.ts` — Configuration commune
-- `config.dev.ts` — Surcharges dev (API locale)
-- `config.prod.ts` — Surcharges prod (API syntheza.ovh)
-- `index.ts` — Loader automatique selon `NODE_ENV`
-- `google.ts` — IDs clients Google OAuth
+- `config.base.ts` - Configuration commune
+- `config.dev.ts` - Surcharges dev (API locale)
+- `config.prod.ts` - Surcharges prod (API syntheza.ovh)
+- `index.ts` - Loader automatique selon `NODE_ENV`
+- `google.ts` - IDs clients Google OAuth
 
 ### App Config (`app.config.ts` / `app.json`)
 
@@ -765,7 +765,7 @@ EXPO_PUBLIC_GOOGLE_IOS_URL_SCHEME=com.googleusercontent.apps.{ID}
 
 ### Tests existants
 
-**Tests services** (`src/tests/services/`) — 11 fichiers :
+**Tests services** (`src/tests/services/`) - 11 fichiers :
 - avatarService, bookmarkService, commentService, feedService
 - followService, likeService, notificationService, searchService
 - **publisherService** (remplace sourceService)
@@ -889,7 +889,7 @@ pnpm adb           # Forward ports 9090, 3000, 9001, 8081
 | JWT Access Token | `expo-secure-store` | Chiffré par le Keychain iOS / Keystore Android |
 | Refresh Token | `expo-secure-store` | Chiffré par le Keychain iOS / Keystore Android |
 | User JSON | MMKV | Chiffré au repos par l'OS |
-| Données sensibles | Jamais loguées/exposées | — |
+| Données sensibles | Jamais loguées/exposées | - |
 
 ### Communication
 

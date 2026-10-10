@@ -1,4 +1,4 @@
-# Syntheza Backend — Documentation Technique
+# Syntheza Backend - Documentation Technique
 
 **Version** : Post-refacto Publisher/Channel (juin 2026)
 **Stack** : Node.js 20.x / TypeScript 5.7.3 / Express 4.21.2 / Prisma 7.2.0 / PostgreSQL 15 / pnpm 10.11
@@ -99,14 +99,14 @@ backend/
 
 ### Middleware Stack (app.ts)
 
-1. `trust proxy 1` — Support proxy (Traefik production)
-2. CORS — Origines configurables (`CORS_ORIGINS`) + defaults localhost:3000/3001/3002, syntheza.ovh
-3. Helmet — CSP, HSTS, clickjacking protection + `Cross-Origin-Resource-Policy: cross-origin` sur `/uploads`
-4. JSON/URLencoded parsing — 50KB limit
-5. Cookie parser — JWT dans cookies HttpOnly
-6. Request ID middleware — UUID unique par requete
-7. Rate limiter general — 15min window, 500 requests max (1000 en dev)
-8. Request logger — Pino avec duree en ms
+1. `trust proxy 1` - Support proxy (Traefik production)
+2. CORS - Origines configurables (`CORS_ORIGINS`) + defaults localhost:3000/3001/3002, syntheza.ovh
+3. Helmet - CSP, HSTS, clickjacking protection + `Cross-Origin-Resource-Policy: cross-origin` sur `/uploads`
+4. JSON/URLencoded parsing - 50KB limit
+5. Cookie parser - JWT dans cookies HttpOnly
+6. Request ID middleware - UUID unique par requete
+7. Rate limiter general - 15min window, 500 requests max (1000 en dev)
+8. Request logger - Pino avec duree en ms
 
 ### Routes Montees
 
@@ -183,7 +183,7 @@ Les deux secrets sont obligatoirement distincts. L'application crash au demarrag
 USER (0) < MEMBER (1) < MODO (2) < ADMIN (3)
 ```
 
-Middleware factory `requireRole(minRole)` — un seul appel DB par requete.
+Middleware factory `requireRole(minRole)` - un seul appel DB par requete.
 
 | Middleware | Role minimum | Usage |
 |-----------|-------------|-------|
@@ -410,7 +410,7 @@ Output : {
 
 ### Garde-fou budget (AIBudgetService)
 
-- Conso enregistree en DB (`AiUsage`, PK = date YYYY-MM-DD) — persistente au redemarrage
+- Conso enregistree en DB (`AiUsage`, PK = date YYYY-MM-DD) - persistente au redemarrage
 - Cache RAM de 30s pour limiter les appels DB
 - Avant chaque appel IA : `canSpend()` verifie depense < budget
 - A 80% du budget : notification SYSTEM envoyee a tous les admins + flag `alerted80` en DB
@@ -442,9 +442,9 @@ Score final = 0.35 × Freshness
 
 | Facteur | Poids | Calcul | Plage |
 |---------|-------|--------|-------|
-| **Freshness** | 35% | `e^(-0.029 × ageHeures)` — decroissance exponentielle, demi-vie ~24h | 0 → 1 |
-| **Engagement** | 25% | `log2(1 + likes + 2×comments) / 10` — plafonne a 1 | 0 → 1 |
-| **Trust** | 25% | `trustScore / 100` — ou 0.5 si non calcule | 0 → 1 |
+| **Freshness** | 35% | `e^(-0.029 × ageHeures)` - decroissance exponentielle, demi-vie ~24h | 0 → 1 |
+| **Engagement** | 25% | `log2(1 + likes + 2×comments) / 10` - plafonne a 1 | 0 → 1 |
+| **Trust** | 25% | `trustScore / 100` - ou 0.5 si non calcule | 0 → 1 |
 | **Completeness** | 15% | 1.0 si contenu present, 0.3 sinon | 0.3 ou 1 |
 
 #### Exemples de scores
@@ -613,7 +613,7 @@ Retourne les statistiques globales :
 - `totalSources` / `activeSources` (nombre de publishers ACTIVE)
 - `totalSummaries` (resumes de l'utilisateur courant)
 - `itemsLast24h` (articles ingeres dans les dernieres 24h)
-- `sourceBreakdown` (vide actuellement — non implemente)
+- `sourceBreakdown` (vide actuellement - non implemente)
 
 ---
 
@@ -659,7 +659,7 @@ En parallele du digest quotidien, un job `auto-summarize` tourne toutes les 30 m
 
 ### Likes
 
-**Toggle pattern idempotent** — un seul endpoint pour like/unlike :
+**Toggle pattern idempotent** - un seul endpoint pour like/unlike :
 
 ```
 POST /api/likes/:itemId/toggle
@@ -818,7 +818,7 @@ Si la validation reussit, `req.body` est remplace par les donnees validees et ne
 | PUT /comments/:id | `updateCommentSchema` | content 1-5000 chars, trimmed |
 | PATCH /preferences | `updatePreferencesSchema` | 18 champs optionnels avec enums stricts |
 
-> Note : les controllers Publisher et Channel ne passent pas encore par `validateBody` (Zod absent sur ces routes — point d'amelioration connu).
+> Note : les controllers Publisher et Channel ne passent pas encore par `validateBody` (Zod absent sur ces routes - point d'amelioration connu).
 
 ---
 
@@ -847,7 +847,7 @@ const logger = pino({ name: 'rss-ingestion' });
 logger.info({ channelId: 5, newItems: 12 }, 'Channel ingestion complete');
 ```
 
-**Aucun `console.log/error/warn`** dans le codebase — tout passe par Pino.
+**Aucun `console.log/error/warn`** dans le codebase - tout passe par Pino.
 
 ### Middlewares de logging
 
@@ -894,17 +894,17 @@ logger.info({ channelId: 5, newItems: 12 }, 'Channel ingestion complete');
 
 | Variable | Defaut | Description |
 |----------|--------|------------|
-| `NODE_ENV` | — | `production`, `development`, `test` |
+| `NODE_ENV` | - | `production`, `development`, `test` |
 | `PORT` | `3000` | Port du serveur |
 | `CORS_ORIGINS` | `syntheza.ovh,localhost:3000-3002` | Origins CORS (comma-separated) |
 | `API_URL` | `http://localhost:3001` | URL de l'API (Swagger) |
-| `GOOGLE_CLIENT_ID` | — | Client ID Google OAuth |
-| `SMTP_HOST` | — | Serveur SMTP |
-| `SMTP_PORT` | — | Port SMTP |
-| `SMTP_USER` | — | User SMTP |
-| `SMTP_PASS` | — | Password SMTP |
-| `SMTP_FROM` | — | Email expediteur |
-| `PANEL_URL` | — | URL du panel admin (liens dans les emails) |
+| `GOOGLE_CLIENT_ID` | - | Client ID Google OAuth |
+| `SMTP_HOST` | - | Serveur SMTP |
+| `SMTP_PORT` | - | Port SMTP |
+| `SMTP_USER` | - | User SMTP |
+| `SMTP_PASS` | - | Password SMTP |
+| `SMTP_FROM` | - | Email expediteur |
+| `PANEL_URL` | - | URL du panel admin (liens dans les emails) |
 | `RSS_CRON_SCHEDULE` | `*/30 * * * *` | Schedule ingestion RSS |
 | `DIGEST_CRON_SCHEDULE` | `0 7 * * *` | Schedule daily digest |
 | `SUMMARIZE_CRON_SCHEDULE` | `*/30 * * * *` | Schedule auto-resume |
@@ -988,13 +988,13 @@ CronRun  (PK: id autoincrement)
 
 ### Cascade deletes
 
-Toutes les relations enfant ont `onDelete: Cascade` — supprimer un User supprime toutes ses donnees associees. Exception : `Summary.item` a `onDelete: SetNull` (la suppression d'un item ne supprime pas les resumes).
+Toutes les relations enfant ont `onDelete: Cascade` - supprimer un User supprime toutes ses donnees associees. Exception : `Summary.item` a `onDelete: SetNull` (la suppression d'un item ne supprime pas les resumes).
 
 ---
 
 ## 21. Endpoints API (69 routes)
 
-### Auth & User (15 routes — /api/user)
+### Auth & User (15 routes - /api/user)
 
 | Methode | Route | Auth | Description |
 |---------|-------|------|-------------|
@@ -1014,7 +1014,7 @@ Toutes les relations enfant ont `onDelete: Cascade` — supprimer un User suppri
 | GET | `/api/user/:id` | Auth | Profil par ID |
 | PUT | `/api/user/:id` | Auth | Modifier un user (IDOR protected) |
 
-### Admin (15 routes — /api/admin)
+### Admin (15 routes - /api/admin)
 
 | Methode | Route | Auth | Description |
 |---------|-------|------|-------------|
@@ -1034,7 +1034,7 @@ Toutes les relations enfant ont `onDelete: Cascade` — supprimer un User suppri
 | POST | `/api/admin/crons/:name/run` | Admin | Declencher manuellement (meme si desactive) |
 | POST | `/api/admin/test-notification` | Admin | Broadcast notif SYSTEM a tous les users |
 
-### Publishers (5 routes — /api/publishers)
+### Publishers (5 routes - /api/publishers)
 
 | Methode | Route | Auth | Description |
 |---------|-------|------|-------------|
@@ -1044,7 +1044,7 @@ Toutes les relations enfant ont `onDelete: Cascade` — supprimer un User suppri
 | PATCH | `/api/publishers/:id` | Admin | Modifier un publisher |
 | DELETE | `/api/publishers/:id` | Admin | Supprimer un publisher |
 
-### Channels (5 routes — /api/channels)
+### Channels (5 routes - /api/channels)
 
 | Methode | Route | Auth | Description |
 |---------|-------|------|-------------|
@@ -1054,14 +1054,14 @@ Toutes les relations enfant ont `onDelete: Cascade` — supprimer un User suppri
 | PATCH | `/api/channels/:id` | Admin | Modifier un channel |
 | DELETE | `/api/channels/:id` | Admin | Supprimer un channel |
 
-### Publisher Subscriptions (2 routes — /api/publisher-subscriptions)
+### Publisher Subscriptions (2 routes - /api/publisher-subscriptions)
 
 | Methode | Route | Auth | Description |
 |---------|-------|------|-------------|
 | GET | `/api/publisher-subscriptions` | Auth | Mes publishers abonnes |
 | POST | `/api/publisher-subscriptions/:publisherId/toggle` | Auth | S'abonner/se desabonner |
 
-### Feed (4 routes — /api/feed)
+### Feed (4 routes - /api/feed)
 
 | Methode | Route | Auth | Description |
 |---------|-------|------|-------------|
@@ -1070,27 +1070,27 @@ Toutes les relations enfant ont `onDelete: Cascade` — supprimer un User suppri
 | GET | `/api/feed/item/:itemId` | Auth | Detail item avec counts |
 | GET | `/api/feed/overview` | Auth | Stats dashboard |
 
-### Search (1 route — /api/search)
+### Search (1 route - /api/search)
 
 | Methode | Route | Auth | Description |
 |---------|-------|------|-------------|
 | GET | `/api/search?q=&page=&limit=` | Auth | Recherche full-text articles |
 
-### Preferences (2 routes — /api/preferences)
+### Preferences (2 routes - /api/preferences)
 
 | Methode | Route | Auth | Description |
 |---------|-------|------|-------------|
 | GET | `/api/preferences` | Auth | Lire les preferences |
 | PATCH | `/api/preferences` | Auth | Mettre a jour |
 
-### Likes (2 routes — /api/likes)
+### Likes (2 routes - /api/likes)
 
 | Methode | Route | Auth | Description |
 |---------|-------|------|-------------|
 | POST | `/api/likes/:itemId/toggle` | Auth | Like/unlike |
 | GET | `/api/likes/:itemId/count` | Auth | Nombre de likes |
 
-### Comments (4 routes — /api/comments)
+### Comments (4 routes - /api/comments)
 
 | Methode | Route | Auth | Description |
 |---------|-------|------|-------------|
@@ -1099,14 +1099,14 @@ Toutes les relations enfant ont `onDelete: Cascade` — supprimer un User suppri
 | PUT | `/api/comments/:commentId` | Auth | Modifier (ownership) |
 | DELETE | `/api/comments/:commentId` | Auth | Supprimer (ownership) |
 
-### Bookmarks (2 routes — /api/bookmarks)
+### Bookmarks (2 routes - /api/bookmarks)
 
 | Methode | Route | Auth | Description |
 |---------|-------|------|-------------|
 | POST | `/api/bookmarks/:itemId/toggle` | Auth | Ajouter/retirer des favoris |
 | GET | `/api/bookmarks?page=&limit=` | Auth | Mes favoris (pagines) |
 
-### Notifications (5 routes — /api/notifications)
+### Notifications (5 routes - /api/notifications)
 
 | Methode | Route | Auth | Description |
 |---------|-------|------|-------------|
@@ -1116,14 +1116,14 @@ Toutes les relations enfant ont `onDelete: Cascade` — supprimer un User suppri
 | PATCH | `/api/notifications/read-all` | Auth | Tout marquer lu |
 | DELETE | `/api/notifications/:id` | Auth | Supprimer |
 
-### Trust Factor (2 routes — /api/trust)
+### Trust Factor (2 routes - /api/trust)
 
 | Methode | Route | Auth | Description |
 |---------|-------|------|-------------|
 | GET | `/api/trust/:itemId` | Auth | Score de confiance |
 | POST | `/api/trust/:itemId/analyze` | Auth + Rate limit | Analyser via IA |
 
-### Follow (5 routes — /api/follow)
+### Follow (5 routes - /api/follow)
 
 | Methode | Route | Auth | Description |
 |---------|-------|------|-------------|
@@ -1178,7 +1178,7 @@ pnpm type-check     # tsc --noEmit
 
 ## 23. Docker & Deploiement
 
-### Dockerfile (Production) — Multi-stage
+### Dockerfile (Production) - Multi-stage
 
 ```
 Stage 1 (builder):
@@ -1217,7 +1217,7 @@ Stage 2 (runtime):
 - Secrets via env : JWT, GEMINI_API_KEY, SMTP, etc.
 - Volumes : uploads persistent, db persistent
 
-> **Important** : `prisma db push` n'est pas lance par le CI/CD — toute modification de schema doit etre appliquee a la prod via SSH (`prisma db push --accept-data-loss`) AVANT le git push, sinon le container crash au boot.
+> **Important** : `prisma db push` n'est pas lance par le CI/CD - toute modification de schema doit etre appliquee a la prod via SSH (`prisma db push --accept-data-loss`) AVANT le git push, sinon le container crash au boot.
 
 ### Scripts utiles
 

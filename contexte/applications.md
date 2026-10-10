@@ -6,7 +6,7 @@ Consolidation : **2026-10-09**. « Observé localement » décrit les sources lu
 
 ## Socle réel
 
-| | Web — observé localement | Mobile — observé localement |
+| | Web - observé localement | Mobile - observé localement |
 |---|---|---|
 | Interface | React 19.2, TypeScript, Vite 6, React Router 7 | React Native 0.81.5, React 19.1, Expo SDK 54, Expo Router 6 |
 | Composants | Radix UI, Tailwind 4, Framer Motion | Tamagui 2 RC, Reanimated 4, composants natifs |
@@ -21,8 +21,8 @@ Le modèle partagé et les contraintes de feed, digest, confiance et budget sont
 
 ## Authentification : deux stockages, un contrat API
 
-- **Observé localement — web :** `AuthContext` pilote l’identité ; `tokenService` conserve utilisateur, access token et refresh token dans le stockage navigateur. Les appels utilisent `Authorization: Bearer`. Le client relance le refresh avec le refresh token dans `X-Refresh-Token` et le corps ; ne pas le décrire comme un client exclusivement fondé sur les cookies.
-- **Observé localement — mobile :** access/refresh tokens dans `expo-secure-store`, profil utilisateur via le stockage applicatif. L’intercepteur rafraîchit une seule fois à la fois, met les requêtes concurrentes en attente et avertit `AuthContext` en cas d’échec. Effacer seulement SecureStore ne suffit pas : l’interface doit également quitter la session.
+- **Observé localement - web :** `AuthContext` pilote l’identité ; `tokenService` conserve utilisateur, access token et refresh token dans le stockage navigateur. Les appels utilisent `Authorization: Bearer`. Le client relance le refresh avec le refresh token dans `X-Refresh-Token` et le corps ; ne pas le décrire comme un client exclusivement fondé sur les cookies.
+- **Observé localement - mobile :** access/refresh tokens dans `expo-secure-store`, profil utilisateur via le stockage applicatif. L’intercepteur rafraîchit une seule fois à la fois, met les requêtes concurrentes en attente et avertit `AuthContext` en cas d’échec. Effacer seulement SecureStore ne suffit pas : l’interface doit également quitter la session.
 - **Rapporté le 16 mai 2026 :** le mobile se bloquait après expiration du token parce que le backend attendait seulement un cookie de refresh et que l’état React restait connecté. Le correctif a introduit le refresh token dans les réponses et le transport header/corps. Les sessions créées avant ce correctif demandaient une reconnexion unique ; ce n’est pas une procédure de migration récurrente.
 - **Contrats observés :** Google transmet `idToken`, Apple `identityToken`. Les services doivent respecter l’enveloppe API `{ success, data }` et les enums backend, pas fabriquer leurs propres valeurs. Les anciennes divergences `medium`/`normal` et `monthly`/`never` ont déjà causé des incompatibilités.
 
@@ -73,8 +73,8 @@ Le bilan historique indique **18 ATP web PASS**, dont le digest validé trois fo
 
 ### Exploration, sans engagement de livraison
 
-- **18 mai 2026 — Discover enrichi :** détail Publisher, regroupement de contenus, score/statut éditeur, logos et liens par slug. Motivation : exploiter un éditeur global plutôt qu’une simple liste plate avec bouton Suivre. Le Discover local ci-dessus ne réalise pas toute cette proposition.
-- **18 mai 2026 — suggestion/vote :** idée communautaire, mais objet du vote et effet sur la confiance non définis. Ne pas la présenter comme une fonctionnalité promise ou un modèle métier déjà choisi.
+- **18 mai 2026 - Discover enrichi :** détail Publisher, regroupement de contenus, score/statut éditeur, logos et liens par slug. Motivation : exploiter un éditeur global plutôt qu’une simple liste plate avec bouton Suivre. Le Discover local ci-dessus ne réalise pas toute cette proposition.
+- **18 mai 2026 - suggestion/vote :** idée communautaire, mais objet du vote et effet sur la confiance non définis. Ne pas la présenter comme une fonctionnalité promise ou un modèle métier déjà choisi.
 
 ## Pièges de reprise
 
@@ -89,5 +89,5 @@ Les décisions et réserves utiles sont intégralement résumées ici ; les réf
 - **Socle et sessions :** [package web](https://github.com/Syntheza-DEV/frontend-web/blob/main/package.json), [package mobile](https://github.com/Syntheza-DEV/frontend-mobile/blob/main/package.json), [AuthContext web](https://github.com/Syntheza-DEV/frontend-web/blob/main/src/contexts/AuthContext.tsx), [intercepteur web](https://github.com/Syntheza-DEV/frontend-web/blob/main/src/services/api/index.ts), [AuthContext mobile](https://github.com/Syntheza-DEV/frontend-mobile/blob/main/src/contexts/AuthContext.tsx).
 - **État et charte :** [store web](https://github.com/Syntheza-DEV/frontend-web/blob/main/src/stores/preferencesStore.ts), [store mobile](https://github.com/Syntheza-DEV/frontend-mobile/blob/main/src/stores/preferencesStore.ts), [CSS web](https://github.com/Syntheza-DEV/frontend-web/blob/main/src/globals.css), [couleurs mobile](https://github.com/Syntheza-DEV/frontend-mobile/blob/main/src/design/colors.ts), [ScreenHeader](https://github.com/Syntheza-DEV/frontend-mobile/blob/main/src/components/ScreenHeader.tsx).
 - **Parcours observés :** [Compte mobile](https://github.com/Syntheza-DEV/frontend-mobile/blob/main/src/app/%28app%29/settings/account.tsx), [Discover mobile](https://github.com/Syntheza-DEV/frontend-mobile/blob/main/src/app/%28app%29/%28tabs%29/discover.tsx), [article mobile](https://github.com/Syntheza-DEV/frontend-mobile/blob/main/src/app/%28app%29/article/%5Bid%5D.tsx), [notifications mobile](https://github.com/Syntheza-DEV/frontend-mobile/blob/main/src/app/%28app%29/%28tabs%29/notifications.tsx), [layout racine mobile](https://github.com/Syntheza-DEV/frontend-mobile/blob/main/src/app/_layout.tsx).
-- **Historique extrait :** `frontend-architecture.md` — 20 juillet 2026 ; `mobile_charter_iso.md` — 24 juin 2026 ; `web-auth-session-cache.md` — 8 juillet 2026 ; `feedback_port_iso.md` et `future_features_mobile.md` — 18 mai 2026 ; `resolved-issues.md` — mars–mai 2026.
-- **Outillage et périmètre :** `incident_2026-05-16.md` — 16 mai 2026 ; `feedback_mobile-expo-cli.md` et `feedback_mobile-testing.md` — revus le 20 juillet 2026 ; `feedback_zustand_reactive_pattern.md` — source d’un autre projet, écartée comme incident Syntheza lors de cette consolidation ; recette du 9 septembre 2026 détaillée dans [État et recette](./etat-et-recette.md).
+- **Historique extrait :** `frontend-architecture.md` - 20 juillet 2026 ; `mobile_charter_iso.md` - 24 juin 2026 ; `web-auth-session-cache.md` - 8 juillet 2026 ; `feedback_port_iso.md` et `future_features_mobile.md` - 18 mai 2026 ; `resolved-issues.md` - mars–mai 2026.
+- **Outillage et périmètre :** `incident_2026-05-16.md` - 16 mai 2026 ; `feedback_mobile-expo-cli.md` et `feedback_mobile-testing.md` - revus le 20 juillet 2026 ; `feedback_zustand_reactive_pattern.md` - source d’un autre projet, écartée comme incident Syntheza lors de cette consolidation ; recette du 9 septembre 2026 détaillée dans [État et recette](./etat-et-recette.md).

@@ -8,10 +8,10 @@
 
 | Objectif retenu | Ce qu’il faut pouvoir montrer | État historique documenté |
 |---|---|---|
-| Obligatoire 1 — Validation de l’idée | Méthode terrain, retours, deux cycles MVP mesurés, capacité à pivoter | Entretiens rapportés et formulaire diffusé ; cycles formalisés et méthode insuffisamment prouvés au jury de juillet |
-| Obligatoire 2 — Outils entrepreneuriaux | Canvas, projections cohérentes, indicateurs et pilotage | Plan d’action et BMC présentés ; GitHub Projects, issues et comptes-rendus utilisés comme preuves |
-| Complément B — Stratégie et vision | Cible, différenciation, priorités et roadmap | Matière présente ; le périmètre de sortie et les critères de réussite restaient trop peu explicités |
-| Complément E — Croissance et expansion | Plan à 6–12 mois et acquisition testable | Canaux et premiers visuels décrits, mais acquisition, funnel et activité réelle insuffisamment démontrés |
+| Obligatoire 1 - Validation de l’idée | Méthode terrain, retours, deux cycles MVP mesurés, capacité à pivoter | Entretiens rapportés et formulaire diffusé ; cycles formalisés et méthode insuffisamment prouvés au jury de juillet |
+| Obligatoire 2 - Outils entrepreneuriaux | Canvas, projections cohérentes, indicateurs et pilotage | Plan d’action et BMC présentés ; GitHub Projects, issues et comptes-rendus utilisés comme preuves |
+| Complément B - Stratégie et vision | Cible, différenciation, priorités et roadmap | Matière présente ; le périmètre de sortie et les critères de réussite restaient trop peu explicités |
+| Complément E - Croissance et expansion | Plan à 6–12 mois et acquisition testable | Canaux et premiers visuels décrits, mais acquisition, funnel et activité réelle insuffisamment démontrés |
 
 Le **Beta Test Plan (BTP)** structure la démonstration ; il n’est pas un cinquième objectif de track. Les plans de test ne sont pas des résultats. Le guide mentor demandait les livrables Go/No-Go 48 heures avant la soutenance : consigne historique, non confirmation d’un dépôt effectué.
 

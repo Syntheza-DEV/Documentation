@@ -30,14 +30,14 @@ période d'examens PGE5 arrive, ralentissement à prévoir.
 
 ## Discussions & Décisions
 
-### Jalon 1 — Industrialisation
+### Jalon 1 - Industrialisation
 - **Discussion** : Migration pnpm sur les 3 repos, 321 tests Vitest backend, 65
   tests Jest mobile, seed de données riche, AI budget limiter et crons
   automatiques (auto trust score, auto ranking).
 - **Décision** : Jalon acté. La base technique est saine et testée.
 - **Responsable** : @Ilhan
 
-### Jalon 2 — Produit branché de bout en bout
+### Jalon 2 - Produit branché de bout en bout
 - **Discussion** : Web et mobile sont branchés sur le vrai backend, plus aucun
   mock. Fonctionnalités sociales complètes (bookmarks, follow, subscriptions,
   commentaires, notifications, avatar), TrustBadge interactif, dark mode,

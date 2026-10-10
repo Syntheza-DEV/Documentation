@@ -29,29 +29,29 @@ Ces lignes résument le rapport `Syntheza_ATP_resultats_2026-09-09_corriges.xlsx
 
 | Cas | Résultat au 9 septembre | Preuve / limite utile |
 | --- | --- | --- |
-| F1 — Créer un compte | PASS | Inscription réelle et session ouverte sur une page privée |
-| F2 — Se connecter | PASS | Formulaire e-mail/mot de passe et accès à Accueil |
-| F3 — Réinitialiser le mot de passe | PASS | Expéditeur Brevo vérifié, domaine authentifié, mail reçu dans Gmail, lien utilisé même avec session existante, reset puis connexion réussis ; pas de garantie de livraison à toutes les messageries |
-| F4 — Protéger les pages privées | PASS | Redirection sans session, accès après authentification |
-| F5 — Se déconnecter | PASS | Fermeture via menu et accès privé de nouveau refusé |
-| F6 — Découvrir des éditeurs | PASS | Cartes d'éditeurs avec nom et domaine ; pas de page de détail séparée exigée par ce contrôle |
-| F7 — Gérer ses abonnements | PASS | Abonnement/désabonnement et Feed reflétant les éditeurs suivis |
-| F8 — Suivre la collecte | PASS | Écran Système et contenus déjà collectés inspectés ; tâches en pause au moment du contrôle, pas preuve d'une collecte planifiée active |
-| F9 — Lire le Feed personnalisé | PASS | Article d'un éditeur suivi, source, auteur et date visibles |
+| F1 - Créer un compte | PASS | Inscription réelle et session ouverte sur une page privée |
+| F2 - Se connecter | PASS | Formulaire e-mail/mot de passe et accès à Accueil |
+| F3 - Réinitialiser le mot de passe | PASS | Expéditeur Brevo vérifié, domaine authentifié, mail reçu dans Gmail, lien utilisé même avec session existante, reset puis connexion réussis ; pas de garantie de livraison à toutes les messageries |
+| F4 - Protéger les pages privées | PASS | Redirection sans session, accès après authentification |
+| F5 - Se déconnecter | PASS | Fermeture via menu et accès privé de nouveau refusé |
+| F6 - Découvrir des éditeurs | PASS | Cartes d'éditeurs avec nom et domaine ; pas de page de détail séparée exigée par ce contrôle |
+| F7 - Gérer ses abonnements | PASS | Abonnement/désabonnement et Feed reflétant les éditeurs suivis |
+| F8 - Suivre la collecte | PASS | Écran Système et contenus déjà collectés inspectés ; tâches en pause au moment du contrôle, pas preuve d'une collecte planifiée active |
+| F9 - Lire le Feed personnalisé | PASS | Article d'un éditeur suivi, source, auteur et date visibles |
 
 ### Lecture et interactions
 
 | Cas | Résultat au 9 septembre | Preuve / limite utile |
 | --- | --- | --- |
-| F10 — Charger plus de contenus | PASS Web | Découvrir/Récents : 20 puis 40 cartes distinctes, aucun doublon, arrêt à la dernière page du jeu observé |
-| F11 — Rechercher | PASS | Recherche par mot-clé puis ouverture d'un résultat |
-| F12 — Lire une synthèse IA | PASS | Synthèse existante française et cohérente, sans Markdown brut ; ne prouve pas un nouvel appel fournisseur payant |
-| F13 — Lire le Digest | PASS utilisateur | Digest essayé et confirmé par le propriétaire, trois fois le même jour ; pas de nouveau test indépendant ni de preuve du cron planifié |
-| F14 — Comprendre le Trust Factor | PASS avec limite IA | Justification persistée puis relue après recharge sans relancer l'IA ; exemple neutre 50 faute de source de recoupement, pas une génération IA payante |
-| F15 — Interagir | PASS | Like, commentaire valide et favori persistants ; interactions aussi dans Découvrir ; commentaire insultant rejeté |
-| F16 — Profil et préférences | PASS | Bio persistante et avatar téléversé ; thème sombre également contrôlé pendant la recette locale |
-| F17 — Notifications | PASS | Notification créée via le service réel sur compte contrôlé, lue, état et compteur persistants |
-| F18 — Administration | PASS | Listes/fiches, changement de rôle puis restauration ; accès opérateur distinct du parcours lecteur |
+| F10 - Charger plus de contenus | PASS Web | Découvrir/Récents : 20 puis 40 cartes distinctes, aucun doublon, arrêt à la dernière page du jeu observé |
+| F11 - Rechercher | PASS | Recherche par mot-clé puis ouverture d'un résultat |
+| F12 - Lire une synthèse IA | PASS | Synthèse existante française et cohérente, sans Markdown brut ; ne prouve pas un nouvel appel fournisseur payant |
+| F13 - Lire le Digest | PASS utilisateur | Digest essayé et confirmé par le propriétaire, trois fois le même jour ; pas de nouveau test indépendant ni de preuve du cron planifié |
+| F14 - Comprendre le Trust Factor | PASS avec limite IA | Justification persistée puis relue après recharge sans relancer l'IA ; exemple neutre 50 faute de source de recoupement, pas une génération IA payante |
+| F15 - Interagir | PASS | Like, commentaire valide et favori persistants ; interactions aussi dans Découvrir ; commentaire insultant rejeté |
+| F16 - Profil et préférences | PASS | Bio persistante et avatar téléversé ; thème sombre également contrôlé pendant la recette locale |
+| F17 - Notifications | PASS | Notification créée via le service réel sur compte contrôlé, lue, état et compteur persistants |
+| F18 - Administration | PASS | Listes/fiches, changement de rôle puis restauration ; accès opérateur distinct du parcours lecteur |
 
 ## Correctifs de septembre à ne pas annuler par accident
 

@@ -1,10 +1,10 @@
-# Centre d'opérations — pivot B2B
+# Centre d'opérations - pivot B2B
 
 **Mis à jour le 10 octobre 2026.** Suivi : issue [#114](https://github.com/EpitechPromo2027/G-EIP-600-NCE-6-1-eip-tristan.gauci/issues/114) du dépôt de rendu école. Source produit : *Syntheza_Business_Plan_Simple_185.pptx* (octobre 2026).
 
 ## Décision produit
 
-La cible n'est plus le grand public mais les **décideurs professionnels** qui engagent de l'argent sur une info (B2B, licence par siège). Promesse : *de la news à la décision en moins de 60 s* — « Décider vite. Décider juste. » Six groupes de métiers sont visés : Trading, Gestion d'actifs (P1), Finance d'entreprise, Énergie & matières premières, Risque & conformité (P2), Médias & communication (P3).
+La cible n'est plus le grand public mais les **décideurs professionnels** qui engagent de l'argent sur une info (B2B, licence par siège). Promesse : *de la news à la décision en moins de 60 s* - « Décider vite. Décider juste. » Six groupes de métiers sont visés : Trading, Gestion d'actifs (P1), Finance d'entreprise, Énergie & matières premières, Risque & conformité (P2), Médias & communication (P3).
 
 La surface principale devient un **centre d'opérations configurable** ; le fil d'actualité reste disponible, en second plan (« Lecture »). Syntheza **informe, ne recommande jamais** (AMF) : aucune formulation d'achat ou de vente.
 

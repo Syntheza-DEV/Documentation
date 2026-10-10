@@ -1,10 +1,10 @@
-# Documentation — Syntheza
+# Documentation - Syntheza
 
 Repo de documentation du projet **Syntheza**, plateforme de veille stratégique assistée par IA développée dans le cadre du module Epitech G-EIP-700 (Promo 2027).
 
 ---
 
-## Contexte partagé — commencer ici
+## Contexte partagé - commencer ici
 
 Le dossier [`contexte/`](./contexte/README.md) centralise le contexte nettoyé pour l'équipe et ses assistants IA : produit, décisions, état et recette, contraintes techniques, exploitation, historique et jurys.
 

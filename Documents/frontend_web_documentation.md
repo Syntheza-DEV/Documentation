@@ -1,4 +1,4 @@
-# Syntheza Frontend Web — Documentation Technique
+# Syntheza Frontend Web - Documentation Technique
 
 **Version** : 2.0.0
 **Stack** : React 19.2 / TypeScript 5.9.3 / Vite 6.4 / Tailwind CSS 4 / React Query 5
@@ -70,7 +70,7 @@ Syntheza Frontend Web est la version navigateur de la plateforme de veille strat
 | Variable | Valeur par défaut | Description |
 |----------|-------------------|-------------|
 | `VITE_API_URL` | `https://api.syntheza.ovh/` | URL de l'API backend |
-| `VITE_GOOGLE_WEB_CLIENT_ID` | — | Client ID Google OAuth (optionnel) |
+| `VITE_GOOGLE_WEB_CLIENT_ID` | - | Client ID Google OAuth (optionnel) |
 
 Le fichier `src/config/index.ts` centralise la lecture de ces variables et expose un objet `Config` typé (`API_URL`, `ENV`). Si `VITE_API_URL` est absent, l'URL de production est utilisée par défaut.
 
@@ -178,7 +178,7 @@ La racine `/` redirige vers `/home`. Toute route inconnue (`*`) fait de même.
 | `/forgot-password` | ForgotPasswordPage | Demande de reset par email |
 | `/reset-password` | ResetPasswordPage | Saisie du nouveau password (token URL) |
 
-### Pages (app — protégées)
+### Pages (app - protégées)
 
 | Chemin | Page | Description |
 |--------|------|-------------|
@@ -197,7 +197,7 @@ La racine `/` redirige vers `/home`. Toute route inconnue (`*`) fait de même.
 | `/settings/security` | SecuritySettingsPage | Mot de passe, 2FA |
 | `/settings/data-privacy` | DataPrivacySettingsPage | Données et vie privée |
 
-### Pages (admin — ADMIN only)
+### Pages (admin - ADMIN only)
 
 | Chemin | Page | Description |
 |--------|------|-------------|
@@ -277,14 +277,14 @@ Les services retournent un discriminated union `{ kind: "ok", data: ... } | { ki
 
 ## 6. Services (couche données)
 
-Chaque domaine fonctionnel possède son répertoire `src/services/<domaine>/` contenant au minimum un fichier `*Service.ts` et un fichier `*Types.ts`. Les services n'ont aucune dépendance vers les composants UI — ils communiquent exclusivement via le singleton `api`.
+Chaque domaine fonctionnel possède son répertoire `src/services/<domaine>/` contenant au minimum un fichier `*Service.ts` et un fichier `*Types.ts`. Les services n'ont aucune dépendance vers les composants UI - ils communiquent exclusivement via le singleton `api`.
 
 ### Services disponibles
 
 | Service | Endpoints backend consommés |
 |---------|----------------------------|
 | `authService` | POST /api/user/login, /signup, /google, /forgot-password, /reset-password, DELETE /logout |
-| `tokenService` | (localStorage uniquement — gestion tokens/user) |
+| `tokenService` | (localStorage uniquement - gestion tokens/user) |
 | `userService` | GET /api/user/me, /api/user/:id, PUT /api/user/me, POST /api/user/me/avatar |
 | `feedService` | GET /api/feed, /api/feed/item/:id, /api/feed/digest |
 | `searchService` | GET /api/search, /api/user/search |
@@ -354,9 +354,9 @@ Le store est alimenté par `AppLayout` au montage si l'utilisateur est authentif
 ### Thème (hook `useTheme`)
 
 `useTheme` coordonne le thème entre trois sources de vérité :
-1. **localStorage** (`syntheza:ui.theme`) — persistance locale
-2. **Préférences serveur** — synchronisées si différentes du local
-3. **`prefers-color-scheme`** — écouté en temps réel si mode `system`
+1. **localStorage** (`syntheza:ui.theme`) - persistance locale
+2. **Préférences serveur** - synchronisées si différentes du local
+3. **`prefers-color-scheme`** - écouté en temps réel si mode `system`
 
 La résolution finale toggle la classe `dark` sur `document.documentElement` (Tailwind dark mode basé sur classe).
 
@@ -383,12 +383,12 @@ Données chargées via `statsService` :
 - **`getAnalytics(period)`** → métriques par période (`24h`, `7d`, `30d`, `90d`)
 
 Composants dashboard :
-- `KpiCard` + `KpiCardSkeleton` — métrique chiffrée avec tendance
-- `Sparkline` + `SparklineCardSkeleton` — graphique mini (Recharts)
-- `PeriodFilter` — sélecteur de période
-- `RoleDistributionChart` + `RoleDistributionSkeleton` — donut chart répartition des rôles
-- `TopList` + `TopListSkeleton` — top articles ou publishers
-- `ActivityFeed` + `ActivityFeedSkeleton` — activité récente
+- `KpiCard` + `KpiCardSkeleton` - métrique chiffrée avec tendance
+- `Sparkline` + `SparklineCardSkeleton` - graphique mini (Recharts)
+- `PeriodFilter` - sélecteur de période
+- `RoleDistributionChart` + `RoleDistributionSkeleton` - donut chart répartition des rôles
+- `TopList` + `TopListSkeleton` - top articles ou publishers
+- `ActivityFeed` + `ActivityFeedSkeleton` - activité récente
 
 Polling automatique toutes les 60 secondes pour les données overview.
 
@@ -514,13 +514,13 @@ pnpm test:watch    # Vitest en mode watch
 ### Dockerfile (multi-stage)
 
 ```
-Stage 1 — builder (node:20-alpine)
+Stage 1 - builder (node:20-alpine)
   └── pnpm install --frozen-lockfile
   └── pnpm build (tsc --noEmit + vite build)
       Les variables VITE_API_URL et VITE_GOOGLE_WEB_CLIENT_ID
       sont injectées comme ARG Docker → ENV → disponibles à la compilation.
 
-Stage 2 — runner (nginx:alpine)
+Stage 2 - runner (nginx:alpine)
   └── Copie dist/ vers /usr/share/nginx/html
   └── Applique nginx.conf
   └── Expose port 80
@@ -529,7 +529,7 @@ Stage 2 — runner (nginx:alpine)
 
 ### Configuration nginx
 
-- `try_files $uri $uri/ /index.html` — SPA fallback (React Router côté client)
+- `try_files $uri $uri/ /index.html` - SPA fallback (React Router côté client)
 - Gzip activé sur JS, CSS, JSON, XML
 - Assets statiques (JS, CSS, fonts, images) : cache 1 an (`Cache-Control: public, immutable`)
 - HTML principal : `no-cache, no-store, must-revalidate`
@@ -557,7 +557,7 @@ Le pipeline se déclenche sur chaque push sur `main` en deux jobs séquentiels :
 Le serveur frontend est `57.128.55.171`. Le `docker-compose.prod.yml` orchestre :
 
 - **`traefik`** : reverse proxy Traefik v2.11, TLS Let's Encrypt automatique (`letsencrypt@syntheza.ovh`), routes sur `syntheza.ovh`
-- **`frontend`** : image depuis ghcr.io, réseau `syntheza-network` (externe — partagé avec le serveur backend via Cloudflare)
+- **`frontend`** : image depuis ghcr.io, réseau `syntheza-network` (externe - partagé avec le serveur backend via Cloudflare)
 
 ---
 

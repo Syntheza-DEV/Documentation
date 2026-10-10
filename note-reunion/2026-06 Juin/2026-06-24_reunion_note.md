@@ -41,7 +41,7 @@ appui sur la préparation de la présentation.
 - **Responsable** : @Ilhan
 
 ### Admin Panel V3
-- **Discussion** : Administration avancée des crons — lancement manuel d'un job
+- **Discussion** : Administration avancée des crons - lancement manuel d'un job
   (même en pause), historique d'exécutions (`CronRun`), édition de fréquence à
   chaud (`CronConfig.schedule`), métriques par job, et envoi d'une notification
   de test à tous les admins.

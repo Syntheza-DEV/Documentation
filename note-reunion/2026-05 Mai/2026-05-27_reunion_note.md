@@ -23,7 +23,7 @@ avec un premier Admin Panel (dashboard, gestion utilisateurs et publishers).
 ## Ordre du jour
 
 1. Validation des déploiements prod
-2. Admin Panel V1 — backend (stats) et web
+2. Admin Panel V1 - backend (stats) et web
 3. Notifications SYSTEM sur les crons
 4. Point bundle web
 
@@ -36,9 +36,9 @@ avec un premier Admin Panel (dashboard, gestion utilisateurs et publishers).
 - **Responsable** : @Ilhan
 
 ### Admin Panel V1
-- **Discussion** : Backend — endpoints stats (`GET /admin/stats/overview` et
+- **Discussion** : Backend - endpoints stats (`GET /admin/stats/overview` et
   `/stats/analytics` avec timeseries, distributions, tops, Zod period schema,
-  tests d'intégration). Web — dashboard (KPIs, sparklines, distribution des
+  tests d'intégration). Web - dashboard (KPIs, sparklines, distribution des
   rôles, tops, activity), users CRUD (table, change role, set password, delete,
   page détail), publishers CRUD, skeletons, guard `AdminRoute` + `useIsAdmin`,
   `AuthUser` étendu (role + id numérique, normalisation depuis l'API).

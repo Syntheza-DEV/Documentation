@@ -1,4 +1,4 @@
-# Syntheza — Technical Overview (EN)
+# Syntheza - Technical Overview (EN)
 
 Syntheza is an AI-assisted strategic watch platform. It aggregates content from
 multiple publishers, deduplicates it, summarizes it and scores its trustworthiness,

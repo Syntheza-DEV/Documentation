@@ -67,11 +67,11 @@ Les scénarios de septembre « 1,2 k€ → 5,4 k€ → 16,8 k€ » sont compa
 
 | Phase prévue | Fenêtre annoncée | Intention et dépendance |
 |---|---|---|
-| P1 — MVP & bêta | Mai–juin 2026 | Rendre le parcours démontrable et recueillir des retours avant d’étendre le produit |
-| P2 — Couverture | Juillet–septembre 2026 | Diversifier et mieux filtrer les sources avant de vendre une promesse trop large |
-| P3 — Monétisation | Octobre–décembre 2026 | Tester Pro et le paiement après consolidation de la valeur ; cible historique d’environ 20 Pro |
-| P4 — Scale | Janvier–mars 2027 | Acquisition organique et amélioration de la couche IA ; scénario de 60 Pro et un pilote Business |
-| P5 — B2B & PGE5 | Avril–septembre 2027 | Explorer des contrats pilotes et préparer la défense finale ; scénario de 160 Pro et quatre Business |
+| P1 - MVP & bêta | Mai–juin 2026 | Rendre le parcours démontrable et recueillir des retours avant d’étendre le produit |
+| P2 - Couverture | Juillet–septembre 2026 | Diversifier et mieux filtrer les sources avant de vendre une promesse trop large |
+| P3 - Monétisation | Octobre–décembre 2026 | Tester Pro et le paiement après consolidation de la valeur ; cible historique d’environ 20 Pro |
+| P4 - Scale | Janvier–mars 2027 | Acquisition organique et amélioration de la couche IA ; scénario de 60 Pro et un pilote Business |
+| P5 - B2B & PGE5 | Avril–septembre 2027 | Explorer des contrats pilotes et préparer la défense finale ; scénario de 160 Pro et quatre Business |
 
 **Non livrés par simple mention dans la roadmap :** détection de signaux faibles et tendances transverses, Trust V2 composite, agent autonome de veille, extension des collecteurs, monétisation Stripe et offre d’équipe. Des travaux Hermès et de communication existent par ailleurs ; ils ne prouvent pas qu’un agent autonome alimente déjà le produit.
 

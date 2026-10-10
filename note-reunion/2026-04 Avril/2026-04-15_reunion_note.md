@@ -36,7 +36,7 @@ branchement sur l'API réelle. Il reste à activer l'IA en prod.
   prochain gros chantier.
 - **Responsable** : @Ilhan
 
-### Mobile — fin des mocks
+### Mobile - fin des mocks
 - **Discussion** : Les données mock sont supprimées côté mobile. Les écrans sont
   branchés sur les vrais endpoints (feed, like, comment, bookmark, follow,
   notifications, trust). ArticleCard interactive, CommentInput, badge notif.

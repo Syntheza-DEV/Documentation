@@ -223,8 +223,8 @@ Cette page contient le contexte nécessaire sans accès à une mémoire privée.
 
 ### Historique nettoyé utilisé
 
-- `backend-architecture.md` et `publisher_channel_refacto.md` — état rapporté des 17–18 mai 2026 ; `resolved-issues.md` — incidents/correctifs mars–mai 2026.
-- `admin_panel_v1.md` — 24–25 mai 2026 ; `admin_panel_v2_system.md` et `gemini_budget_lessons.md` — juin 2026 ; `admin_cron_v3.md` — 24 juin 2026.
-- `trust-factor-ia-architecture.md` — cadrage et corrections des 1–2 juillet 2026 ; `reference_prisma_v7_gotchas.md` — rapprochement Syntheza daté du 20 juillet 2026.
-- `feedback_prod_db_migration.md` — incident du 2 juin et mise à jour du 1er juillet 2026, tous deux replacés face aux fichiers actuels.
+- `backend-architecture.md` et `publisher_channel_refacto.md` - état rapporté des 17–18 mai 2026 ; `resolved-issues.md` - incidents/correctifs mars–mai 2026.
+- `admin_panel_v1.md` - 24–25 mai 2026 ; `admin_panel_v2_system.md` et `gemini_budget_lessons.md` - juin 2026 ; `admin_cron_v3.md` - 24 juin 2026.
+- `trust-factor-ia-architecture.md` - cadrage et corrections des 1–2 juillet 2026 ; `reference_prisma_v7_gotchas.md` - rapprochement Syntheza daté du 20 juillet 2026.
+- `feedback_prod_db_migration.md` - incident du 2 juin et mise à jour du 1er juillet 2026, tous deux replacés face aux fichiers actuels.
 - Corrections et recette du 9 septembre 2026 : substance reprise ci-dessus ; provenance consolidée dans [État et recette](./etat-et-recette.md) et [Sources](./sources.md), sans dépendance aux conversations privées.
