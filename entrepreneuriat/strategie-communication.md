@@ -265,7 +265,7 @@ Outil : `syntheza-skills/insta`, CLI `bin/insta-editorial.js`. Il sélectionne u
 | 3. Rendu | Responsable | `--out-dir out/editorial/<bundle>` ; relire les PNG ; un statut `needs_review` signale un débordement. |
 | 4. Relecture croisée | Un autre fondateur | Checklist de conformité du §7, sources ouvertes une par une, absence de recommandation, absence de donnée personnelle. |
 | 5. GO | Un fondateur différent du rédacteur | Validation explicite écrite. |
-| 6. Publication | Titulaire du compte | Instagram : circuit Discord `GO` vers Instagram **observé dans le code du backend local, fonctionnement en production non prouvé** ; à défaut, publication manuelle. LinkedIn : publication manuelle depuis la page ou le profil du fondateur. |
+| 6. Publication | Titulaire du compte | Instagram : depuis le back-office **https://syntheza.ovh/admin/instagram** (approuver, puis publier par l'API Meta), ou à la main dans l'application Instagram / Meta Business Suite. LinkedIn : publication manuelle depuis la page ou le profil du fondateur. |
 | 7. Traçabilité | Responsable | Statut et lien de publication dans le calendrier ; le brief et le PNG validés sont conservés. |
 
 **Point ouvert 1 (réglé le 15/10).** Le CLI produit des PNG et des SVG, pas de PDF. Le PDF multi-pages du carrousel LinkedIn est assemblé à partir des PNG validés (Pillow) : voir `contenus/s2-decode/s2-document-linkedin.pdf` et `contenus/s3-fiable/s3-document-linkedin.pdf`. Le PDF n'est pas une sortie du générateur ; seuls les PNG relus font foi.
@@ -298,7 +298,17 @@ Règles d'ajustement : un pilier dont `taux_engagement` reste sous la baseline q
 
 **Point ouvert 2 (vérifié dans le code le 15/10).** Le site n'a aucun outil de mesure d'audience, et le modèle `Lead` (demande de pilote, `backend/prisma/schema.prisma`) n'enregistre ni paramètre UTM ni réponse à « Comment avez-vous connu Syntheza ? ». `visites_pilote` n'est donc **pas mesurable aujourd'hui**, et l'origine d'une demande de pilote non plus. Le correctif est inscrit en P0-6 de la [feuille de route](./feuille-de-route-fonctionnalites.md). En attendant, on relève les clics natifs de chaque canal et on demande l'origine à chaque demandeur lors du premier échange. Un seul `utm_source=linkedin` couvre la page et les profils : le total est saisi sur la ligne « LinkedIn page ».
 
-**Point ouvert 3 (réglé le 15/10).** Le circuit Discord → Instagram existe dans le code du backend. En production, il reste **inerte par construction** : le workflow de déploiement ne renseigne pas les variables `DISCORD_INSTAGRAM_*`, et il suffit qu'une seule manque pour que le bot ne démarre pas (`AGENTS.md` §3.2, point 6). La publication Instagram est donc **manuelle**, comme le décrit `syntheza-skills/insta/SKILL.md`. Pour activer le circuit, il faudrait ajouter les secrets GitHub correspondants : hors périmètre avant février.
+**Point ouvert 3 (corrigé le 15/10 après lecture du code et des secrets).** Il existe deux circuits vers Instagram.
+
+- **Back-office** `https://syntheza.ovh/admin/instagram` : liste les publications par état, et permet de les approuver, rejeter, publier ou réconcilier. La publication passe par l'API Meta Graph. Les secrets `INSTAGRAM_BUSINESS_ACCOUNT_ID`, `INSTAGRAM_ACCESS_TOKEN` et `META_GRAPH_API_VERSION` existent dans l'environnement `production` du dépôt backend (créés entre le 28/07 et le 01/08/2026), et le workflow de déploiement les transmet. La page n'a **pas de bouton d'import** : une publication y entre par l'API (`POST /admin/instagram/posts` avec le `manifest.json` du générateur, puis `POST /admin/instagram/posts/:id/images`).
+- **Bot Discord** (`SYNTHEZA_INSTAGRAM_BUNDLE_V1` + réponse `GO`) : **inerte en production**, car les variables `DISCORD_INSTAGRAM_*` ne sont pas transmises par le workflow (`AGENTS.md` §3.2, point 6).
+
+**Non vérifié** :
+
+- la validité du jeton Meta, daté du 01/08. Un jeton utilisateur longue durée expire au bout de 60 jours, un jeton d'utilisateur système n'expire pas ;
+- le compte qu'il cible (on suppose `@syntheza.eip`).
+
+Avant le 22/10, il faut faire un premier essai de publication depuis le back-office. S'il échoue, publier à la main dans l'application.
 
 ## 10. KPI et objectifs
 
