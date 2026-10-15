@@ -1,6 +1,15 @@
 # Entrepreneuriat : dossier de la séance de mentorat du 15/10/2026
 
-Ce dossier rassemble les réponses de l'équipe aux actions demandées par le mentor le 18/09/2026 ([compte rendu](../note-reunion/2026-09%20Septembre/2026-09-18_reunion_note.md)). Il servira ensuite de **registre des preuves de validation marché** jusqu'au jury de février 2027.
+Ce dossier rassemble les réponses de l'équipe aux actions demandées par le mentor le 18/09/2026 ([compte rendu](../note-reunion/2026-09%20Septembre/2026-09-18_reunion_note.md)). Il sert aussi de **registre des preuves** pour le jury.
+
+> **Référence absolue : le guide officiel Tech 5** (*EIP Student Guide, Entrepreneurship Track*, reçu le 15/10). Tout ce qu'il cite devra être cité et prouvé le jour du jury. Chaque exigence du guide, avec son statut, sa preuve et son échéance, est dans **[conformite-attentes.md](./conformite-attentes.md)**. Le guide impose **fin décembre**, pas février : 20 bêta-testeurs fin novembre, deux tours de test en novembre et en décembre, un premier engagement écrit avant fin décembre, et un envoi des livrables 48 h avant chaque séance.
+
+Livrables attendus à la séance d'octobre :
+
+- [note de positionnement de l'équipe](./note-positionnement-equipe.md) (brouillon à compléter) ;
+- [business plan révisé](./business-plan-revision.md) ;
+- [hypothèses critiques](./hypotheses-critiques.md) ;
+- [fiche ICP](./fiche-icp.md).
 
 ## Ordre du jour proposé (14 h – 15 h)
 
@@ -36,7 +45,7 @@ Ce dossier rassemble les réponses de l'équipe aux actions demandées par le me
 
 | # | Action | Réponse | Statut |
 |---|---|---|---|
-| 1–2 | Guide Tech 5 et alignement | Guide introuvable hors intranet ; matrice d'alignement prête, à compléter dès réception | **Bloqué : guide à récupérer** |
+| 1–2 | Guide Tech 5 et alignement | Guide reçu le 15/10 ; chaque exigence est reportée dans [conformite-attentes.md](./conformite-attentes.md) avec statut, preuve et échéance | Fait (analyse) ; beaucoup d'exigences restent à exécuter |
 | 3 | Bugs | Corrections continues, points ouverts listés | Continu |
 | 4 | Fonctionnalités prioritaires | 6 chantiers P0, 3 P1 et 2 P2, chacun relié à une preuve attendue par le jury | Fait |
 | 5 | Alimenter Instagram | 5 premiers contenus (S1–S5) rédigés et 15 visuels rendus à la charte, sources citées | Prêt, à relire puis publier dès le 20/10 |
@@ -62,12 +71,13 @@ Ce point de départ quasi nul est en soi une donnée utile pour le jury : toute 
 
 ## 4. Questions pour le mentor
 
-1. **Guide Tech 5** : où le récupérer ? Les objectifs complémentaires B (stratégie et vision) et E (croissance et expansion) choisis en juillet restent-ils valables, alors que le 18/09 a reformulé O1 et O2 ?
-2. **Pivot B2B** : comment le jury lira-t-il un changement de cible quatre mois avant février ? Faut-il le présenter comme un cycle « hypothèse → invalidation → pivot » de l'objectif O1 ?
-3. **Preuve de traction** : si aucun client ne paie d'ici février, des pilotes en cours, des rapports de pilote et des lettres d'intention suffisent-ils ?
-4. **Réseau** : pouvez-vous nous présenter à des professionnels de la gestion, du trading ou de la trésorerie, ou à des alumni de ces métiers ?
-5. **Instagram** : faut-il le garder en canal secondaire pour une cible B2B, ou concentrer l'effort sur LinkedIn ?
-6. **Jury de février** : date exacte, format, durée de la démo.
+1. **Bêta-testeurs** : le guide en demande 20 qualifiés et actifs fin novembre. Avec une cible stricte de professionnels du trading et de la gestion d'actifs, c'est irréaliste. Accepterez-vous une grille à trois niveaux : cœur de cible, cible voisine, et hors cible validé par écrit ([fiche-icp.md](./fiche-icp.md)) ?
+2. **Pivot B2B** : comment le jury lira-t-il un changement de cible en octobre ? Faut-il le présenter comme un cycle « hypothèse → invalidation → pivot » ?
+3. **Premier engagement** : un pilote gratuit accepté par écrit, avec 2 utilisateurs nommés et une vraie liste d'actifs suivis, suffit-il comme « first customer » si son coût pour le client est documenté ?
+4. **Calendrier des séances** : dates de novembre et de décembre, pour envoyer les livrables 48 h avant.
+5. **Réseau** : pouvez-vous nous présenter à des professionnels de la gestion, du trading ou de la trésorerie, ou à des alumni de ces métiers ?
+6. **Second canal** : le guide demande « 2 main channels, chosen and justified by where your target actually is ». Instagram tient-il face à une cible B2B finance, ou vaut-il mieux une newsletter, qui servirait aussi de canal direct ?
+7. **Jury** : date exacte, format, durée de la démo.
 
 ## 5. Ce qui démarre le lundi 19/10
 
@@ -88,4 +98,8 @@ Ce point de départ quasi nul est en soi une donnée utile pour le jury : toute 
 | [prospection.md](./prospection.md) | ICP, sources, séquences, guide d'entretien, script de démo, offre pilote, objections, CNIL, preuves, plan des semaines 43–44 |
 | [prospects-cibles.xlsx](./prospects-cibles.xlsx) | 44 comptes, 22 communautés et événements, modèle de journal (sans données personnelles) |
 | [feuille-de-route-fonctionnalites.md](./feuille-de-route-fonctionnalites.md) | Fonctionnalités prioritaires reliées aux preuves du jury |
-| [conformite-attentes.md](./conformite-attentes.md) | Attentes du mentor face aux livrables, preuves et statuts ; guide Tech 5 à intégrer |
+| [conformite-attentes.md](./conformite-attentes.md) | **Chaque exigence du guide Tech 5** : statut, preuve, reste à faire, échéance |
+| [note-positionnement-equipe.md](./note-positionnement-equipe.md) | Rôles, complémentarité, légitimité, manques, histoire (brouillon) |
+| [business-plan-revision.md](./business-plan-revision.md) | Changements depuis juin, modèle de revenus, note de prix, coûts (factures à joindre), point mort, projection 12 mois, incohérences du pptx |
+| [hypotheses-critiques.md](./hypotheses-critiques.md) | Hypothèses classées par fragilité, les 3 critiques, leurs tests et seuils |
+| [fiche-icp.md](./fiche-icp.md) | Modèle B2B, ICP, critères de qualification des prospects et des testeurs, canaux |
