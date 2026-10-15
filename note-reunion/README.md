@@ -13,7 +13,8 @@ note-reunion/
 ├── 2026-03 Mars/
 ├── 2026-04 Avril/
 ├── 2026-05 Mai/
-└── 2026-06 Juin/
+├── 2026-06 Juin/
+└── 2026-09 Septembre/
 ```
 
 ## 📝 Nomenclature
