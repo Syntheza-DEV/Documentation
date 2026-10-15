@@ -73,7 +73,7 @@ Quatre audits ont été menés en se mettant à la place de chaque métier : tra
 
 ### Offres et types de compte (10/10/2026)
 
-Offres tirées du business plan, hors taxes, en contrat annuel après 30 jours de pilote. **Pas de paiement en ligne ni de site vitrine pour l'instant** (décision du propriétaire) : les offres sont attribuées dans le back-office (*Admin > Organisations*).
+Offres tirées du business plan, hors taxes, en contrat annuel après 30 jours de pilote. **Pas de paiement en ligne** (décision du propriétaire) : les offres sont attribuées dans le back-office (*Admin > Organisations*). Depuis le 15/10/2026, le site public présente les trois offres **sans leurs prix** (« Coming soon », boutons de souscription grisés) : voir « Site public » plus bas. Les prix ci-dessous restent internes jusqu'à l'ouverture des ventes.
 
 | | Pro | Équipe | Entreprise |
 | --- | --- | --- | --- |
@@ -180,6 +180,19 @@ Code mergé (backend #39, web #23), portes vertes : backend 2 561 tests sur 2 56
 - **Portefeuille** : import CSV ou XLSX avec aperçu, poids normalisés à 100 %, exposition par info (« N % du portefeuille »), page `/actifs/portefeuille`, section dans le brief e-mail.
 - **File de traitement** (`/traitement`) : une affectation par info et par organisation, statuts Nouveau, En cours et Traité, commentaires, relève d'équipe, notification à la personne affectée. Une info affectée n'est jamais purgée.
 - **Rapports de veille** (Réglages > Rapports) : rapports Word, PowerPoint ou PDF à la charte, hebdomadaires ou mensuels, envoyés en pièce jointe si SMTP est configuré, sinon téléchargeables ; fichiers conservés 90 jours.
+
+### Site public (15/10/2026, web #26 à #29, backend #41)
+
+La racine `https://syntheza.ovh/` sert un site vitrine à la charte, en **HTML statique prérendu** ; l'application garde toutes ses routes.
+
+- **Pages (23)** : accueil, fonctionnalités, métiers (index et 7 pages), tarifs, sécurité, intégrations, statut, blog (6 articles et flux RSS `/blog/rss.xml`), à propos, mentions légales. Le contenu ne reprend que des faits de ce dossier ; une relecture contre la documentation a corrigé 11 écarts avant la mise en ligne. Aucun prix, témoignage ni chiffre client.
+- **Tarifs** : les trois offres et leur comparatif, prix en « Coming soon », boutons « Souscrire » grisés et désactivés. L'appel à l'action est la demande de pilote (`/pilote`), dont les prix ont aussi été retirés.
+- **Connexion** : l'en-tête affiche « Se connecter » et « Demander un pilote », ou « Accéder au panel » (`/ops`) dès qu'une session existe dans le stockage local (`syntheza:auth.refreshToken`), choisi avant l'affichage. Les pages de connexion renvoient au site (« Retour au site »).
+- **Statut** (`/statut`) : lit `GET /api/public/status` (public, cache 30 s) et se rafraîchit chaque minute. Composants API, collecte (dégradée après 5 min sans relevé, en panne après 30 min) et sources (dégradées au-delà de 15 % de flux en erreur, en panne au-delà de 40 %). Aucun message d'erreur ni nom de flux n'est exposé. Historique : les incidents du 11/09 au 10/10 (collecte) et du 11/10 (API).
+- **Technique** : code dans `frontend-web/src/site/` (React rendu en HTML au build, sans hydratation ; un seul petit script pour la page Statut). `pnpm build` enchaîne le build client, un build SSR et `scripts/prerender.mjs`, qui écrit chaque page en `<chemin>/index.html`, déplace la coquille de l'application vers `app.html` (`noindex`) et génère `sitemap.xml`, `robots.txt` (routes de l'application interdites) et le flux RSS. nginx sert `$uri`, puis `$uri/index.html`, puis `app.html` ; une barre oblique finale redirige en 301. Images de partage 1200×630 dans `public/og/`. Les tokens de la charte sont partagés par `src/styles/tokens.css`.
+- **Garde-fou** : `src/site/site.test.ts` vérifie l'unicité des titres et descriptions, leur longueur, un seul H1 par page, les liens internes et les ancres, l'absence de prix et de tiret cadratin, le sitemap, le robots.txt et le flux RSS.
+- **Mesuré en production le 15/10** : parcours complet visiteur, connexion, `/ops` (76 appels API, aucun en échec), retour au site, « Accéder au panel ». Lighthouse sur les 23 pages en thème clair, et sur l'accueil, les tarifs et le statut en thème sombre : SEO 100, accessibilité 100, bonnes pratiques 100, performance 97 à 100. Il a fallu retirer la teinte de fond des pastilles d'état : avec `bg-*/10`, le vert et l'ambre tombaient à 4,1:1 en thème clair. Les pastilles de l'application (`TrustPill`, `ImpactPill`) ont encore cette teinte.
+- **À compléter** : les informations d'immatriculation de la société dans les mentions légales, dès sa création ; la soumission du sitemap à Google Search Console (aucun accès depuis ce poste).
 
 ## Exploitation : ce qui a changé
 
