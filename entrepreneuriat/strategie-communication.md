@@ -29,10 +29,48 @@ Règle absolue : aucune donnée de marché, statistique d'audience ou horaire re
 | Offres (hypothèses du BP, HT) | Pro 185 €/siège/mois ; Équipe 140 €/siège (5 minimum) ; Entreprise API + SLA (hypothèse 2 000 €/mois). Pilote gratuit de 30 jours avant contrat annuel. | BP, diapos 12-13 |
 | Tunnel BP à septembre 2027 | 300 comptes ciblés → 60 réponses → 25 démos → 12 pilotes → 8 contrats. | BP, diapo 13 |
 | Limite à ne jamais masquer | Le BP indique que le moteur n'est pas encore temps réel ; « moins de 60 s » est un objectif, pas une mesure. | BP, diapos 5-6 et 17 |
-| Compte Instagram existant | Quelques contenus réalisés avec un professionnel de la publicité digitale. Aucune donnée chiffrée disponible ici. | Énoncé de la mission |
+| Réseaux existants (relevé du 15/10/2026) | **Un seul réseau : Instagram `@syntheza.eip`**, avec 6 publications, 5 abonnés et 0 abonnement. **Aucune page LinkedIn Syntheza.** Les publications et la bio datent d'avant le pivot (voir §1.1). | Capture du profil public, 15/10/2026 |
 | Clients, utilisateurs actifs | Aucun client ni utilisateur actif documenté. Aucune publication ne doit en suggérer. | `Documentation/contexte/` |
 
-**Baseline.** Tous les compteurs de départ (abonnés, impressions, reach, engagements des trois canaux ; comptes contactés, réponses…) sont **à relever** le 15/10/2026 (semaine ISO 42) dans la ligne `baseline` des deux onglets hebdomadaires de `kpi-suivi.xlsx`. Pour Instagram : abonnés, nombre de publications existantes, impressions et reach sur la période disponible, engagements, meilleures et moins bonnes publications.
+**Baseline.** Valeurs relevées le 15/10/2026 et saisies dans la ligne `baseline` de `kpi-suivi.xlsx` :
+
+- Instagram : 5 abonnés, 6 publications au total ;
+- page LinkedIn : 0 abonné, puisque la page n'existe pas.
+
+Restent **à relever** :
+
+- les impressions, le reach et les engagements d'Instagram, à lire dans les statistiques du compte (un compte professionnel ou créateur est nécessaire pour y accéder) ;
+- les abonnés et relations des trois profils fondateurs ;
+- le tunnel commercial, qui part de 44 comptes identifiés et d'aucun contact consigné.
+
+Avec 5 abonnés sur Instagram et aucune page LinkedIn, **la portée de départ est quasi nulle** : les premières semaines reposent sur les **profils des fondateurs** et sur la prospection directe. C'est ce qui justifie la logique founder-led du §4.
+
+### 1.1 Audit du compte `@syntheza.eip` (15/10/2026)
+
+Les 6 publications sont listées de la plus récente à la plus ancienne. Elles respectent la charte (mono, Space Grotesk, logo globe), mais elles parlent toutes de l'**ancien positionnement grand public** :
+
+| # | Publication | Problème au regard du pivot et des règles du §7 | Recommandation |
+|---|---|---|---|
+| 1 | « Une bonne veille commence par une vraie question. » | Pédagogie générique sur la veille, compatible avec le pivot ; le pied de visuel affiche `@syntheza` au lieu de `@syntheza.eip` | Garder |
+| 2 | « Sauvegarder, ce n'est pas faire de la veille. » (carrousel) | Pédagogie générique, compatible | Garder |
+| 3 | « Ta veille mérite mieux que le bruit. » | Tutoiement grand public ; « bientôt disponible » alors que le produit est en production | Archiver |
+| 4 | « Ce que fait Syntheza » : synthèse IA, Trust Factor, digest quotidien | Décrit le produit grand public (« 50 articles lus, 1 brief de 5 lignes ») et « Rejoignez la bêta » ; le budget IA est à 0 depuis le 10/10 | Archiver |
+| 5 | « Ne ratez plus rien, sans vous noyer. » | Promesse de juin dont `produit-et-roadmap.md` rappelle qu'elle n'est ni une mesure ni une garantie ; elle concurrence la nouvelle signature « Décider vite. Décider juste. » | Archiver |
+| 6 | « 1 à 2 h perdues chaque jour à trier l'information » | **Chiffre sans source** : il reprend les pourcentages d'enquête que `jury-et-livrables.md` interdit de recycler (protocole et chronologie non réconciliés) | Archiver en priorité |
+
+**Archiver** masque une publication du profil sans la supprimer (réversible). On garde ainsi la trace pour le jury (« voici d'où l'on part ») sans laisser un chiffre non sourcé en vitrine. **Décision de l'équipe**, à prendre avant la première publication du 22/10.
+
+**Bio.** L'actuelle (« Ne ratez plus rien, sans vous noyer. Votre veille triée et résumée par l'IA… ») contredit la cible. Proposition de 139 caractères (limite Instagram : 150) :
+
+```text
+Le dashboard temps réel des décideurs pros. Chaque info résumée, sourcée, notée. On informe, on ne conseille pas. Pilote gratuit 30 jours ↓
+```
+
+Lien de la bio : `https://syntheza.ovh/pilote?utm_source=instagram&utm_medium=social&utm_campaign=bio`.
+
+**Identifiant.** Pour un public B2B, `@syntheza.eip` signale un projet d'école. Avec 5 abonnés, le renommer ne coûte rien, à condition que `@syntheza` soit libre. Facultatif.
+
+**Page LinkedIn à créer avant le 22/10** (premier créneau prévu pour la page, S2) : nom Syntheza, logo globe, slogan « Décider vite. Décider juste. », lien vers `https://syntheza.ovh/pilote?utm_source=linkedin&utm_medium=social&utm_campaign=page`, les trois fondateurs rattachés comme employés. Comme la page démarre à 0 abonné, chaque publication de la page est **repartagée le jour même par les trois fondateurs** avec un commentaire personnel. Ce sont eux qui apportent la portée.
 
 ## 2. Objectifs de communication (SMART)
 

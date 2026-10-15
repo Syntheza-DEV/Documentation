@@ -75,7 +75,7 @@ Si vous travaillez sur un desk ou en gestion et que ce sujet vous parle, mon DM 
 
 | Champ | Valeur |
 |---|---|
-| Canal / compte | LinkedIn, page entreprise Syntheza (document) + compte Instagram Syntheza (carrousel) |
+| Canal / compte | LinkedIn, page entreprise Syntheza (document, page à créer avant le 22/10) + Instagram `@syntheza.eip` (carrousel) |
 | Date / heure | jeudi 22/10/2026, 08:30 (LinkedIn) et 12:30 (Instagram), hypothèses |
 | Pilier | `DECODE` « Une news, 60 secondes : comment Syntheza la lit » |
 | Objectif | Montrer le produit sur un cas réel et faire comprendre le Trust Factor (objectif, sans valeur chiffrée) |
@@ -149,7 +149,7 @@ PDF LinkedIn : `s2-decode/s2-document-linkedin.pdf`. Alt texts : dans les bundle
 
 | Champ | Valeur |
 |---|---|
-| Canal / compte | LinkedIn, page entreprise Syntheza (document) + compte Instagram Syntheza (carrousel) |
+| Canal / compte | LinkedIn, page entreprise Syntheza (document) + Instagram `@syntheza.eip` (carrousel) |
 | Date / heure | mardi 27/10/2026, 08:30 (LinkedIn) et 13:00 (Instagram), hypothèses |
 | Pilier | `FIABLE` « Rumeur ou info ? Lire un Trust Factor » |
 | Objectif | Pédagogie de la vérification : ce que dit et ne dit pas un score (objectif, sans valeur chiffrée) |
@@ -273,7 +273,7 @@ Demande de pilote : https://syntheza.ovh/pilote?utm_source=linkedin&utm_medium=s
 
 | Champ | Valeur |
 |---|---|
-| Canal / compte | compte Instagram Syntheza |
+| Canal / compte | Instagram `@syntheza.eip` |
 | Date / heure | vendredi 30/10/2026, 12:30 (hypothèse) |
 | Pilier | `BUILD` coulisses de l'équipe |
 | Objectif | Humaniser la marque et montrer la répartition réelle des rôles (objectif, sans valeur chiffrée) |

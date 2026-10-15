@@ -22,7 +22,7 @@ Statuts : **Livré** = le livrable existe ; **Prêt, exécution à lancer** = le
 | O1 · Calendrier éditorial | [calendrier-editorial.xlsx](./calendrier-editorial.xlsx) | Calendrier prévu comparé au publié (liens des publications) | Prêt, exécution à lancer le 20/10 | hebdo |
 | O1 · Fréquence cohérente (2–3/sem.) | idem | Taux de respect du calendrier | Prêt, exécution à lancer | hebdo |
 | O1 · Identité graphique cohérente | charte, section dédiée de la stratégie ; gabarits `syntheza-skills/insta` | Planche des publications côte à côte | Livré (gabarits) ; premiers visuels dans [contenus/](./contenus/) | - |
-| O1 · Mesurer des KPI concrets | [kpi-suivi.xlsx](./kpi-suivi.xlsx) | Relevé hebdomadaire daté, captures des statistiques natives | Prêt ; **baseline à relever le 15/10** | hebdo |
+| O1 · Mesurer des KPI concrets | [kpi-suivi.xlsx](./kpi-suivi.xlsx) | Relevé hebdomadaire daté, captures des statistiques natives | Prêt ; baseline du 15/10 : Instagram `@syntheza.eip` 5 abonnés et 6 publications, page LinkedIn inexistante ; statistiques Instagram et profils fondateurs encore à relever | hebdo |
 | O1 · Montrer l'évolution jusqu'en février | idem, graphiques | Courbes de la semaine 42 à la semaine 9 | À produire au fil de l'eau | jury |
 | O1 · Chaque action justifiée (persona, horaire, objectif, résultat attendu) | colonnes du calendrier : persona, objectif, CTA | Bilan mensuel « attendu / obtenu » | Prêt | mensuel |
 | O2 · Premiers prospects | [prospects-cibles.xlsx](./prospects-cibles.xlsx) | Pipeline du back-office (export CSV) | Comptes identifiés ; contacts à lancer le 19/10 | sem. 43 |

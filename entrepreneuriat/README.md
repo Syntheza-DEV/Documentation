@@ -43,20 +43,22 @@ Ce dossier rassemble les réponses de l'équipe aux actions demandées par le me
 | 6 | Second canal | LinkedIn (page et profils des fondateurs), justifié par des sources ; TikTok écarté | Fait |
 | 7 | Calendrier éditorial | 61 publications du 20/10 au 26/02 : 41 LinkedIn, 20 Instagram | Fait |
 | 8 | Identité graphique | Charte déclinée en gabarits ; générateur `syntheza-skills/insta` | Fait |
-| 9 | KPI | Classeur hebdomadaire social et commercial, objectifs, définitions, graphiques | Prêt, **baseline à relever aujourd'hui** |
+| 9 | KPI | Classeur hebdomadaire social et commercial, objectifs, définitions, graphiques | Prêt ; baseline relevée pour les abonnés Instagram (5) et la page LinkedIn (0, inexistante), statistiques Instagram encore à relever |
 | 10 | 2–3 publications/semaine | Calendrier : LinkedIn 2–3/sem., Instagram 1–2/sem., Noël allégé | Démarre le 20/10 |
 | 11 | Premiers prospects | 44 organisations qualifiables (40 P1), séquences de messages prêtes | Contacts à partir du 19/10 |
 | 12 | Documenter les échanges | Pipeline du back-office, journal, règle de preuve | Prêt |
 | 13 | Communautés et testeurs | 22 communautés et événements, avec dates vérifiées | Prêt |
 | 14 | Validation marché pour février | Tunnel cible : 115 contactés, 10 démos, 3 pilotes, 1 contrat au jury | Objectifs fixés |
 
-## 3. Relevés de départ (baseline) à faire le 15/10
+## 3. Point de départ (baseline) au 15/10
 
-À saisir dans [kpi-suivi.xlsx](./kpi-suivi.xlsx), ligne `baseline` de la semaine 42. Ne rien estimer : une case vide vaut mieux qu'un chiffre inventé.
+Saisi dans [kpi-suivi.xlsx](./kpi-suivi.xlsx), ligne `baseline` de la semaine 42. Rien n'est estimé : une case vide vaut mieux qu'un chiffre inventé.
 
-- Instagram : abonnés, nombre de publications, impressions, reach et engagements disponibles, meilleure publication.
-- LinkedIn : la page Syntheza existe-t-elle ? Si oui, relever ses abonnés ; relever aussi les abonnés et relations des trois fondateurs.
-- Commercial : tout échange déjà eu avec un professionnel, avec sa date réelle, saisi dans le pipeline du back-office.
+- **Instagram `@syntheza.eip`**, le seul réseau existant : 5 abonnés, 6 publications, 0 abonnement (profil public, 15/10). Les 6 publications et la bio parlent de l'ancien positionnement grand public, et l'une d'elles affiche un chiffre sans source (« 1 à 2 h perdues chaque jour »). Audit et recommandations : [stratégie §1.1](./strategie-communication.md) (archiver 4 publications, nouvelle bio).
+- **LinkedIn** : aucune page Syntheza, donc 0 abonné. **Page à créer avant le 22/10.**
+- **Encore à relever** : impressions, reach et engagements Instagram (dans les statistiques du compte) ; abonnés des trois profils fondateurs ; tout échange déjà eu avec un professionnel, avec sa date réelle, à saisir dans le pipeline du back-office.
+
+Ce point de départ quasi nul est en soi une donnée utile pour le jury : toute progression d'ici février sera mesurée à partir de lui.
 
 ## 4. Questions pour le mentor
 
@@ -70,6 +72,7 @@ Ce dossier rassemble les réponses de l'équipe aux actions demandées par le me
 ## 5. Ce qui démarre le lundi 19/10
 
 - Prospection, semaine 43 : 44 comptes à qualifier, 15 invitations, messages aux communautés. Répartition par fondateur dans [prospection.md](./prospection.md) §12.
+- Avant le 20/10 : créer la page LinkedIn Syntheza ; mettre à jour la bio de `@syntheza.eip` ; décider de l'archivage des 4 publications d'avant le pivot ([stratégie §1.1](./strategie-communication.md)).
 - Première publication le mardi 20/10 (S1), après relecture croisée.
 - Chantiers produit P0-1, P0-2, P0-3 et P0-6 : parcours de pilote, e-mails en production, tableau de démo, origine des demandes de pilote.
 - Relevé des KPI chaque lundi.
